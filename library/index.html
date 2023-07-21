@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+
+        <h1>Brooklyn Public Library</h1>
+        <nav class="nav">
+            <ul class="nav-list">
+                <li>About</li>
+                <li>Favorites</li>
+                <li>
+                    <nobr>Coffee shop</nobr>
+                </li>
+                <li>Contacts</li>
+                <li>
+                    <nobr>Library Card</nobr>
+                </li>
+            </ul>
+        </nav>
+        <img class='icon_profile' src="assets/img/icon_profile.svg" alt="icon_profile">
+    </header>
+    <main>
+        <section class="section-welcome">
+            <div class="overlay">
+                <div class="welcome-bg">
+                    <p class="welcome-bg-text">Welcome<br>to the Brooklyn<br>Library</p>
+                </div>
+            </div>
+            <div class="books"></div>
+        </section>
+        <section class="section section-about">
+            <div class="section-title">
+                <h2 class="title">About</h2>
+                <div class="line"></div>
+            </div>
+            <div class="section-paragraph">The Brooklyn Library is a free workspace, a large number of books and a cozy
+                coffee
+                shop inside </div>
+            <div class="section-about-container-img">
+                <div class="img item1"></div>
+                <div class="img item2"></div>
+                <div class="img item3"></div>
+            </div>
+            <div class="section-about-carousel">
+                <div class="carousel-clickable-area">
+                    <div class="carousel-inner-area brown"></div>
+                </div>
+                <div class="carousel-clickable-area">
+                    <div class="carousel-inner-area"></div>
+                </div>
+                <div class="carousel-clickable-area">
+                    <div class="carousel-inner-area"></div>
+                </div>
+            </div>
+        </section>
+        <section class="section section-favorites">
+            <div class="section-title">
+                <h2 class="title">Favorites</h2>
+                <div class="line"></div>
+            </div>
+            <p class="pick-favorites">Pick favorites of season</p>
+            <div class="seasons">
+                <input id="Winter" type="radio" checked><label for="Winter">Winter</label>
+                <input id="Spring" type="radio"><label for="Spring">Spring</label>
+                <input id="Summer" type="radio"><label for="Summer">Summer</label>
+                <input id="Autumn" type="radio"><label for="Autumn">Autumn</label>
+            </div>
+            <di class="favorites-items">
+                <div class="card card1">
+                    <div class="card-description">
+
+                        <div class="staff-picks">Staff Picks
+                            <div class="line2"></div>
+                        </div>
+                        <div class="book-name">
+                            <div class="name">The Book Eaters</div>
+                            <div class="author">By Sunyi Dean</div>
+                        </div>
+                        <div class="book-description">An unusual sci-fi story about a book eater woman who tries
+                            desperately to save her dangerous mind-eater son from tradition and certain death. Complete
+                            with dysfunctional family values, light Sapphic romance, and a strong, complex protagonist.
+                            Not for the faint of heart.</div>
+                        <button class="card-button">Buy</button>
+                    </div>
+                    <img class="book-img" src="assets/img/books/winter_book_1.jpg" alt="book">
+                </div>
+                <div class="card card2">
+                    <div class="card-description">
+
+                        <div class="staff-picks">Staff Picks
+                            <div class="line2"></div>
+                        </div>
+                        <div class="book-name">
+                            <div class="name">Cackle</div>
+                            <div class="author">By Rachel Harrison</div>
+                        </div>
+                        <div class="book-description">Are your Halloween movies of choice The Witches of Eastwick and
+                            Practical Magic? Look no further than here - where a woman recovering from a breakup moves
+                            to a quaint town in upstate New York and befriends a beautiful witch.</div>
+                        <button class="card-button">Buy</button>
+                    </div>
+                    <img class="book-img" src="assets/img/books/winter_book_2.jpg" alt="book">
+                </div>
+                <div class="card card3">
+                    <div class="card-description">
+
+                        <div class="staff-picks">Staff Picks
+                            <div class="line2"></div>
+                        </div>
+                        <div class="book-name">
+                            <div class="name">Dante: Poet of the Secular World</div>
+                            <div class="author">By Erich Auerbach</div>
+                        </div>
+                        <div class="book-description">Auerbach's engaging book places the 'Comedy' within the tradition
+                            of epic, tragedy, and philosophy in general, arguing for Dante's uniqueness as one who
+                            raised the individual and his drama of soul into something of divine significance—an
+                            inspired introduction to Dante's main themes.</div>
+                        <button class="card-button">Buy</button>
+                    </div>
+                    <img class="book-img" src="assets/img/books/winter_book_3.jpg" alt="book">
+                </div>
+                <div class="card card4">
+                    <div class="card-description">
+
+                        <div class="staff-picks">Staff Picks
+                            <div class="line2"></div>
+                        </div>
+                        <div class="book-name">
+                            <div class="name">The Last Queen</div>
+                            <div class="author">By Clive Irving</div>
+                        </div>
+                        <div class="book-description">A timely and revelatory new biography of Queen Elizabeth (and her
+                            family) exploring how the Windsors have evolved and thrived as the modern world has changed
+                            around them.</div>
+                        <button disabled class="button-disabled">Own</button>
+                    </div>
+                    <img class="book-img" src="assets/img/books/winter_book_4.jpg" alt="book">
+                </div>
+                </div>
+        </section>
+    </main>
+    <footer></footer>
+    </div>
+</body>
+
+</html>
