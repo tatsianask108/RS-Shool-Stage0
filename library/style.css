@@ -177,7 +177,7 @@ h1 {
 }
 
 .img {
-    width: 450px;
+    width: calc((100% - 50px) / 3);
     height: 560px;
     flex-shrink: 0;
 }
@@ -242,9 +242,9 @@ h1 {
 
 .seasons {
     display: flex;
-    justify-content: space-between;
+    gap: 90px;
+    /* gap: 6%; */
     flex-shrink: 0;
-    width: 700px;
     box-sizing: border-box;
     color: #000;
     font-family: Inter;
@@ -255,6 +255,22 @@ h1 {
     margin-bottom: 40px;
 
 }
+
+.seasons>label {}
+
+
+.seasons>label>input {
+    margin: 0 20px 0 0;
+}
+
+.seasons>label>span {
+    display: inline-block
+}
+
+.seasons>label>input:checked+span {
+    font-weight: bold;
+}
+
 
 label {
     cursor: pointer;
@@ -464,6 +480,8 @@ button:disabled {
     align-items: center;
     gap: 60px;
 
+    /* width: 100%; */
+
     color: #000;
     font-family: Inter;
     font-size: 20px;
@@ -471,8 +489,25 @@ button:disabled {
     font-weight: 400;
     line-height: 40px;
     /* 200% */
-    letter-spacing: 2px;
+
     text-transform: capitalize;
+}
+
+.menu-item-coffee {
+    width: 100%;
+    letter-spacing: 2px;
+}
+
+.menu-item-coffee>div {
+    flex-grow: 0;
+}
+
+.menu-item-coffee>div.menu-item-content-1 {
+    flex-grow: 1;
+}
+
+.menu-item-content-2 {
+    letter-spacing: 1.5px;
 }
 
 .deserts {
@@ -517,6 +552,10 @@ button:disabled {
     /* 200% */
     letter-spacing: 2px;
     text-transform: capitalize;
+}
+
+.text-info p {
+    margin-top: 0;
 }
 
 .tel {
@@ -744,4 +783,16 @@ footer {
     line-height: 20px;
     /* 100% */
     letter-spacing: 2px;
+}
+
+.frame2>div {
+    flex: 1 1 33%;
+}
+
+.frame2>div:first-child {
+    text-align: left;
+}
+
+.frame2>div:last-child {
+    text-align: right;
 }
