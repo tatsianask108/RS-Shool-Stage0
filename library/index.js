@@ -1,0 +1,1 @@
+console.log('1. Вёрстка валидная +10 \n2. Вёрстка семантическая +16\n3. Вёрстка соответствует макету +54\n(header +8\n Welcome +4\nAbout +6\nFavorites +8\nCoffeShop +6\nContacts +6\nLibraryCard +8\nfooter +8)\n4. Общие требования к верстке +20');
