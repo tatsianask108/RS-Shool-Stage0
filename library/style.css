@@ -7,10 +7,16 @@ html {
 }
 
 body {
-    width: 1440px;
+    max-width: 1440px;
     margin: 0 auto;
+    height: 100%;
     font-family: 'Forum', cursive;
     font-family: 'Inter', sans-serif;
+}
+
+.wrapper {
+    min-height: 100%;
+    overflow: hidden;
 }
 
 header {
@@ -37,6 +43,12 @@ h1 {
     line-height: 50px;
     /* 166.667% */
     letter-spacing: 0.6px;
+}
+
+@media (max-width:1024px) {
+    .nav {
+        display: none;
+    }
 }
 
 .nav-list {
@@ -129,6 +141,12 @@ h1 {
 
 }
 
+@media (max-width:1024px) {
+    body {
+        max-width: 768px;
+    }
+}
+
 /* ABOUT */
 .section-title {
     display: flex;
@@ -174,6 +192,7 @@ h1 {
 .section-about-container-img {
     display: flex;
     justify-content: space-between;
+
 }
 
 .img {
@@ -194,7 +213,24 @@ h1 {
     background: url(assets/img/image3.png), lightgray 50% / cover no-repeat;
 }
 
-.section-about-carousel {
+@media (max-width: 1024px) {
+
+    .item2,
+    .item3 {
+        display: none;
+    }
+
+    .item1 {
+        width: 450px;
+    }
+
+    .section-about-container-img {
+        justify-content: center;
+        margin-bottom: -15px;
+    }
+}
+
+.section-about-carousel-desktop {
     display: flex;
     justify-content: center;
     margin-top: 35px;
@@ -222,10 +258,14 @@ h1 {
     background: #BB945F;
 }
 
+@media (min-width: 1024px) {
+    .area-hidden {
+        display: none;
+    }
+}
+
 /* FAVORITES */
 .section-favorites {
-    /* height: 1439px; */
-    /* padding: 0 20px 0; */
     box-sizing: border-box;
 }
 
@@ -252,8 +292,6 @@ h1 {
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    margin-bottom: 40px;
-
 }
 
 
@@ -286,6 +324,13 @@ input[type='radio'] {
     flex-wrap: wrap;
 }
 
+@media (max-width: 1024px) {
+    .favorites-items {
+        display: flex;
+        justify-content: center;
+    }
+}
+
 .card {
     width: 590px;
     height: 555px;
@@ -297,12 +342,12 @@ input[type='radio'] {
 
 .card1,
 .card2 {
-    margin-bottom: 40px;
+    margin-top: 40px;
 }
 
 .card3,
 .card4 {
-    margin-bottom: 0;
+    margin-top: 40px;
 }
 
 .card5,
@@ -457,6 +502,20 @@ button:disabled {
     justify-content: space-between;
 }
 
+@media (max-width:1024px) {
+    .menu {
+        flex-direction: column;
+    }
+
+    /* .menu-column {
+        min-width: 438px;
+    } */
+
+    .deserts {
+        margin-top: 40px;
+    }
+}
+
 .menu-column {
     display: inline-flex;
     flex-direction: column;
@@ -540,6 +599,17 @@ button:disabled {
     gap: 199px;
 }
 
+@media (max-width:1024px) {
+    .contacts-info {
+        flex-direction: column;
+        gap: 100px;
+    }
+
+    .text-info {
+        margin-left: -13px;
+    }
+}
+
 .text-info {
     display: flex;
     justify-content: space-between;
@@ -584,7 +654,38 @@ button:disabled {
 .library-cards-container {
     display: flex;
     justify-content: space-between;
-    /* align-items: flex-start; */
+}
+
+.library-cards-section-title {
+    margin-bottom: 40px;
+}
+
+@media (max-width:1024px) {
+    .library-cards-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .get-card {
+        min-width: 600px;
+        margin-top: 20px;
+    }
+
+    .get-card>.get-card-title,
+    .get-card>.get-card-description {
+        text-align: center;
+        margin-bottom: 42px;
+
+    }
+
+    .get-card>.get-card-buttons {
+        display: flex;
+        justify-content: center;
+    }
+
+    /* .find-card-border {
+        margin-bottom: 20px;
+    } */
 }
 
 .find-card {
@@ -603,14 +704,14 @@ button:disabled {
     font-weight: 400;
     line-height: normal;
     letter-spacing: 0.6px;
-
-    margin-top: 40px;
+    margin-top: 0;
 }
 
 .find-card-border {
     border: 3px solid #BB945F;
     padding: 20px;
     box-shadow: 0px 6px 10px 1px rgba(34, 60, 80, 0.2);
+    /* margin-bottom: 20px; */
 }
 
 .form-wrapper-brown {
@@ -685,6 +786,7 @@ button:disabled {
 
 .get-card {
     text-align: right;
+    width: 456px;
 }
 
 .get-card-title {
@@ -695,8 +797,6 @@ button:disabled {
     font-weight: 400;
     line-height: normal;
     letter-spacing: 0.6px;
-
-    margin-top: 40px;
 }
 
 .get-card-description {
