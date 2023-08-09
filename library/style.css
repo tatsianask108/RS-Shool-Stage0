@@ -28,6 +28,16 @@ header {
     align-items: center;
 }
 
+.burger {
+    margin-left: 40px;
+}
+
+@media (min-width: 1024px) {
+    .burger {
+        display: none;
+    }
+}
+
 .header-inner-wrapper {
     display: flex;
     align-items: center;
@@ -192,16 +202,17 @@ h1 {
 .section-about-container-img {
     display: flex;
     justify-content: space-between;
-
+    gap: 25px;
 }
 
 .img {
-    width: calc((100% - 50px) / 3);
-    height: 560px;
-    flex-shrink: 0;
+    /* width: calc((100% - 50px) / 3); */
+    width: 100%;
+
 }
 
-.item1 {
+
+/* .item1 {
     background: url(assets/img/image1.png), lightgray 50% / cover no-repeat;
 }
 
@@ -211,7 +222,7 @@ h1 {
 
 .item3 {
     background: url(assets/img/image3.png), lightgray 50% / cover no-repeat;
-}
+} */
 
 @media (max-width: 1024px) {
 
@@ -220,14 +231,22 @@ h1 {
         display: none;
     }
 
-    .item1 {
-        width: 450px;
-    }
+    /* .item1 {
+        width: ;
+    } */
 
     .section-about-container-img {
         justify-content: center;
+        align-items: flex-start;
+        gap: 58px;
         margin-bottom: -15px;
     }
+
+    .carret {
+        margin-top: 288px;
+    }
+
+
 }
 
 .section-about-carousel-desktop {
@@ -260,6 +279,14 @@ h1 {
 
 @media (min-width: 1024px) {
     .area-hidden {
+        display: none;
+    }
+
+    .carret {
+        display: none;
+    }
+
+    .burger {
         display: none;
     }
 }
@@ -514,6 +541,12 @@ button:disabled {
     .deserts {
         margin-top: 40px;
     }
+
+    .drinks {
+        width: 62%;
+    }
+
+
 }
 
 .menu-column {
@@ -608,6 +641,12 @@ button:disabled {
     .text-info {
         margin-left: -13px;
     }
+
+
+}
+
+.map {
+    max-width: 100%;
 }
 
 .text-info {
@@ -649,6 +688,8 @@ button:disabled {
     flex-direction: column;
     gap: 20px;
 }
+
+
 
 /* Digital Library Cards */
 .library-cards-container {
@@ -888,9 +929,9 @@ footer {
     letter-spacing: 2px;
 }
 
-.frame2>div {
+/* .frame2>div {
     flex: 1 1 33%;
-}
+} */
 
 .frame2>div:first-child {
     text-align: left;
