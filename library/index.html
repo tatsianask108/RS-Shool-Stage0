@@ -15,7 +15,7 @@
         <header>
             <h1>Brooklyn Public Library</h1>
             <div class="header-inner-wrapper">
-                <nav class="nav">
+                <nav class="nav" data-nav>
                     <ul class="nav-list">
                         <li class="nav-item"><a href="#About" class="nav-link">About</a></li>
                         <li class="nav-item"><a href="#Favorites" class="nav-link">Favorites</a></li>
@@ -25,7 +25,9 @@
                     </ul>
                 </nav>
                 <img class="icon_profile" src="assets/img/icon_profile.svg" alt="icon_profile">
-                <img class="burger" src="assets/img/burger.svg" alt="burger">
+                <button class="burger" data-burger aria-label="Открыть меню" aria-expanded="false">
+                    <span class="burger__line"></span>
+                </button>
             </div>
 
 
