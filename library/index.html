@@ -11,6 +11,22 @@
 </head>
 
 <body>
+    <div class="modal" id="my-modal">
+        <form class="modal__box">
+            <button class='modal__close-btn' id="close-modal-btn">
+                x</button>
+            <h1>my modal</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore dignissimos molestiae expedita!
+                Corrupti, deleniti? Minima distinctio deserunt ducimus incidunt tenetur.</p>
+            <p>lorem500</p>
+        </form>
+    </div>
+
+    <!-- <a href="#" data-popup-button="login-dropdown"></a>
+    <a href="#" data-popup-button="login-popup"></a>
+    <a href="#" data-popup-button="registration-popup"></a>
+    <a href="#" data-popup-button="registration-popup"></a> -->
+
     <div class="wrapper">
         <header>
             <h1>Brooklyn Public Library</h1>
@@ -24,16 +40,33 @@
                         <li class="nav-item"><a href="#Library-Card" class="nav-link">Library Card</a></li>
                     </ul>
                 </nav>
-                <img class="icon_profile" src="assets/img/icon_profile.svg" alt="icon_profile">
+                <a href="#" data-popup-button="login-dropdown">
+                    <img class="icon_profile" src="assets/img/icon_profile.svg" alt="icon_profile">
+                </a>
+
+
                 <button class="burger" data-burger aria-label="Открыть меню" aria-expanded="false">
                     <span class="burger__line"></span>
+                </button>
+
+            </div>
+
+            <div id="login-dropdown" data-popup>
+                <!-- <a href="#" data-popup-close>X</a> -->
+                <p class="login-dropdown"><b>Profile</b></p>
+                <div class="line-dropdown"></div>
+                <p class="login-dropdown">Log In</p>
+                <button data-popup-button="registration-popup">
+                    <p class="login-dropdown">Register</p>
                 </button>
             </div>
 
 
 
+
         </header>
         <main>
+
             <section class="section-welcome">
                 <div class="books">
 
@@ -51,33 +84,41 @@
                     <h2 class="title">About</h2>
                     <div class="line"></div>
                 </div>
-                <div class="section-paragraph">The Brooklyn Library is a free workspace, a large number of books and a
+                <div class="section-paragraph">The Brooklyn Library is a free workspace, a large number of books and
+                    a
                     cozy
                     coffee
                     shop inside </div>
-                <div class="section-about-container-img">
-                    <div class="carret"><img src="assets/img/Carret_Left.svg" alt=" Carret_Left"></div>
-                    <div class="img item1"><img class="img" src="assets/img/image1.png" alt="image1"></div>
-                    <div class="img item2"><img class="img" src="assets/img/image2.png" alt="image2"></div>
-                    <div class="img item3"><img class="img" src="assets/img/image3.png" alt="image3"></div>
-                    <div class="carret"><img src="assets/img/Carret_Right.svg" alt="Carret_Right"></div>
+                <div class="adapted-container">
+                    <div class="carret carret-left"><img src="assets/img/Carret_Left.svg" alt=" Carret_Left"></div>
+                    <div class="slider-wrapper">
+                        <div class="section-about-container-img">
+                            <div class="img item1"><img class="img" src="assets/img/image1.png" alt="image1"></div>
+                            <div class="img item2"><img class="img" src="assets/img/image2.png" alt="image2"></div>
+                            <div class="img item3"><img class="img" src="assets/img/image3.png" alt="image3"></div>
+                            <div class="img item4"><img class="img" src="assets/img/image4.png" alt="image4"></div>
+                            <div class="img item5"><img class="img" src="assets/img/image5.png" alt="image5"></div>
+                        </div>
+                    </div>
+                    <div class="carret carret-right"><img src="assets/img/Carret_Right.svg" alt="Carret_Right">
+                    </div>
                 </div>
-                <div class="section-about-carousel-desktop">
-                    <div class="carousel-clickable-area area-hidden">
-                        <div class="carousel-inner-area area-hidden brown"></div>
+                <div class="section-about-carousel-desktop dots-container">
+                    <!-- <div class="carousel-clickable-area dot">
+                        <div class="carousel-inner-area inner-dot section-about-container-img"></div>
                     </div>
-                    <div class="carousel-clickable-area">
-                        <div class="carousel-inner-area"></div>
+                    <div class="carousel-clickable-area dot">
+                        <div class="carousel-inner-area inner-dot"></div>
                     </div>
-                    <div class="carousel-clickable-area">
-                        <div class="carousel-inner-area"></div>
+                    <div class="carousel-clickable-area dot">
+                        <div class="carousel-inner-area inner-dot"></div>
                     </div>
-                    <div class="carousel-clickable-area">
-                        <div class="carousel-inner-area"></div>
+                    <div class="carousel-clickable-area dot" style="display:none">
+                        <div class="carousel-inner-area inner-dot"></div>
                     </div>
-                    <div class="carousel-clickable-area area-hidden">
-                        <div class="carousel-inner-area area-hidden"></div>
-                    </div>
+                    <div class="carousel-clickable-area dot" style="display:none">
+                        <div class="carousel-inner-area inner-dot"></div>
+                    </div> -->
                 </div>
             </section>
             <section class="section section-favorites" id="Favorites">
@@ -85,17 +126,19 @@
                     <h2 class="title">Favorites</h2>
                     <div class="line"></div>
                 </div>
-                <div class="pick-favorites">Pick favorites of season</div>
-                <div class="seasons">
-                    <label for="Winter"><input id="Winter" type="radio" checked><span>Winter</span></label>
-                    <label for="Spring"><input id="Spring" type="radio"><span>Spring</span></label>
-                    <label for="Summer"><input id="Summer" type="radio"><span>Summer</span></label>
-                    <label for="Autumn"><input id="Autumn" type="radio"><span>Autumn</span></label>
-                </div>
-                <div class="favorites-items">
-                    <div class="card card1">
-                        <div class="card-description">
 
+                <div class="sticky-mobile">
+                    <div class="pick-favorites">Pick favorites of season</div>
+                    <form class="seasons" id="books-category">
+                        <label><input name="season" value="Winter" type="radio" checked><span>Winter</span></label>
+                        <label><input name="season" value="Spring" type="radio"><span>Spring</span></label>
+                        <label><input name="season" value="Summer" type="radio"><span>Summer</span></label>
+                        <label><input name="season" value="Autumn" type="radio"><span>Autumn</span></label>
+                    </form>
+                </div>
+                <div class="books-container" id="books-container" data-current="Winter">
+                    <div class="card card1" data-season="Winter">
+                        <div class="card-description">
                             <div class="staff-picks">Staff Picks
                                 <div class="line2"></div>
                             </div>
@@ -113,9 +156,8 @@
                         </div>
                         <img class="book-img" src="assets/img/books/winter/winter_book_1.jpg" alt="book">
                     </div>
-                    <div class="card card2">
+                    <div class="card card2" data-season="Winter">
                         <div class="card-description">
-
                             <div class="staff-picks">Staff Picks
                                 <div class="line2"></div>
                             </div>
@@ -123,7 +165,8 @@
                                 <div class="name">Cackle</div>
                                 <div class="author">By Rachel Harrison</div>
                             </div>
-                            <div class="book-description">Are your Halloween movies of choice The Witches of Eastwick
+                            <div class="book-description">Are your Halloween movies of choice The Witches of
+                                Eastwick
                                 and
                                 Practical Magic? Look no further than here - where a woman recovering from a breakup
                                 moves
@@ -132,7 +175,7 @@
                         </div>
                         <img class="book-img" src="assets/img/books/winter/winter_book_2.jpg" alt="book">
                     </div>
-                    <div class="card card3">
+                    <div class="card card3" data-season="Winter">
                         <div class="card-description">
 
                             <div class="staff-picks">Staff Picks
@@ -144,16 +187,16 @@
                             </div>
                             <div class="book-description">Auerbach's engaging book places the 'Comedy' within the
                                 tradition
-                                of epic, tragedy, and philosophy in general, arguing for Dante's uniquness as one who
+                                of epic, tragedy, and philosophy in general, arguing for Dante's uniquness as one
+                                who
                                 raised the individual and his drama of soul into something of divine significance—an
                                 inspired introduction to Dante's main themes.</div>
                             <button class="card-button">Buy</button>
                         </div>
                         <img class="book-img" src="assets/img/books/winter/winter_book_3.jpg" alt="book">
                     </div>
-                    <div class="card card4">
+                    <div class="card card4" data-season="Winter">
                         <div class="card-description">
-
                             <div class="staff-picks">Staff Picks
                                 <div class="line2"></div>
                             </div>
@@ -161,7 +204,8 @@
                                 <div class="name">The Last Queen</div>
                                 <div class="author">By Clive Irving</div>
                             </div>
-                            <div class="book-description">A timely and revelatory new biography of Queen Elizabeth (and
+                            <div class="book-description">A timely and revelatory new biography of Queen Elizabeth
+                                (and
                                 her
                                 family) exploring how the Windsors have evolved and thrived as the modern world has
                                 changed
@@ -170,7 +214,7 @@
                         </div>
                         <img class="book-img" src="assets/img/books/winter/winter_book_4.jpg" alt="book">
                     </div>
-                    <div class="card card5">
+                    <div class="card card5" data-season="Spring">
                         <div class="card-description">
 
                             <div class="staff-picks">Staff Picks
@@ -187,7 +231,7 @@
                         </div>
                         <img class="book-img" src="assets/img/books/spring/spring_book_1.jpg" alt="book">
                     </div>
-                    <div class="card card6">
+                    <div class="card card6" data-season="Spring">
                         <div class="card-description">
 
                             <div class="staff-picks">Staff Picks
@@ -197,13 +241,214 @@
                                 <div class="name">Carry: A Memoir of Survival on Stolen Land</div>
                                 <div class="author">By Toni Jenson</div>
                             </div>
-                            <div class="book-description">This memoir about the author's relationship with gun violence
-                                feels both expansive and intimate, resulting in a lyrical indictment of the way things
+                            <div class="book-description">This memoir about the author's relationship with gun
+                                violence
+                                feels both expansive and intimate, resulting in a lyrical indictment of the way
+                                things
                                 are.
                             </div>
                             <button class="card-button">Buy</button>
                         </div>
                         <img class="book-img" src="assets/img/books/spring/spring_book_2.jpg" alt="book">
+                    </div>
+                    <div class="card card7" data-season="Spring">
+                        <div class="card-description">
+
+                            <div class="staff-picks">Staff Picks
+                                <div class="line2"></div>
+                            </div>
+                            <div class="book-name">
+                                <div class="name">Days of Distraction</div>
+                                <div class="author">By Alexandra Chang</div>
+                            </div>
+                            <div class="book-description">A sardonic view of Silicon Valley culture, a meditation on
+                                race, and a journal of displacement and belonging, all in one form-defying package
+                                of
+                                spare prose.
+                            </div>
+                            <button class="card-button">Buy</button>
+                        </div>
+                        <img class="book-img" src="assets/img/books/spring/spring_book_3.jpg" alt="book">
+                    </div>
+                    <div class="card card8" data-season="Spring">
+                        <div class="card-description">
+
+                            <div class="staff-picks">Staff Picks
+                                <div class="line2"></div>
+                            </div>
+                            <div class="book-name">
+                                <div class="name">Dominicana</div>
+                                <div class="author">By Angie Cruz</div>
+                            </div>
+                            <div class="book-description">A fascinating story of a teenage girl who marries a man
+                                twice
+                                her age with the promise to bring her to America. Her marriage is an opportunity for
+                                her
+                                family to eventually immigrate. For fans of Isabel Allende and Julia Alvarez.
+                            </div>
+                            <button class="card-button">Buy</button>
+                        </div>
+                        <img class="book-img" src="assets/img/books/spring/spring_book_4.jpg" alt="book">
+                    </div>
+                    <div class="card card9" data-season="Summer">
+                        <div class="card-description">
+
+                            <div class="staff-picks">Staff Picks
+                                <div class="line2"></div>
+                            </div>
+                            <div class="book-name">
+                                <div class="name">Crude: A Memoir</div>
+                                <div class="author">By Pablo Fajardo & ​​Sophie Tardy-Joubert</div>
+                            </div>
+                            <div class="book-description">Drawing and color by Damien Roudeau | This book
+                                illustrates
+                                the struggles of a group of indigenous Ecuadoreans as they try to sue the
+                                ChevronTexaco
+                                company for damage their oil fields did to the Amazon and her people
+                            </div>
+                            <button class="card-button">Buy</button>
+                        </div>
+                        <img class="book-img" src="assets/img/books/summer/summer_book_1.jpg" alt="book">
+                    </div>
+                    <div class="card card10" data-season="Summer">
+                        <div class="card-description">
+
+                            <div class="staff-picks">Staff Picks
+                                <div class="line2"></div>
+                            </div>
+                            <div class="book-name">
+                                <div class="name">Let My People Go Surfing </div>
+                                <div class="author">By Yvon Chouinard</div>
+                            </div>
+                            <div class="book-description">Chouinard—climber, businessman, environmentalist—shares
+                                tales
+                                of courage and persistence from his experience of founding and leading Patagonia,
+                                Inc.
+                                Full title: Let My People Go Surfing: The Education of a Reluctant Businessman,
+                                Including 10 More Years of Business Unusual.
+                            </div>
+                            <button class="card-button">Buy</button>
+                        </div>
+                        <img class="book-img" src="assets/img/books/summer/summer_book_2.jpg" alt="book">
+                    </div>
+                    <div class="card card11" data-season="Summer">
+                        <div class="card-description">
+
+                            <div class="staff-picks">Staff Picks
+                                <div class="line2"></div>
+                            </div>
+                            <div class="book-name">
+                                <div class="name">The Octopus Museum: Poems</div>
+                                <div class="author">By Brenda Shaughnessy</div>
+                            </div>
+                            <div class="book-description">This collection of bold and scathingly beautiful feminist
+                                poems imagines what comes after our current age of environmental destruction,
+                                racism,
+                                sexism, and divisive politics.
+                            </div>
+                            <button class="card-button">Buy</button>
+                        </div>
+                        <img class="book-img" src="assets/img/books/summer/summer_book_3.jpg" alt="book">
+                    </div>
+                    <div class="card card12" data-season="Summer">
+                        <div class="card-description">
+
+                            <div class="staff-picks">Staff Picks
+                                <div class="line2"></div>
+                            </div>
+                            <div class="book-name">
+                                <div class="name">Shark Dialogues: A Novel</div>
+                                <div class="author">By Kiana Davenport</div>
+                            </div>
+                            <div class="book-description">An epic saga of seven generations of one family
+                                encompasses
+                                the tumultuous history of Hawaii as a Hawaiian woman gathers her four granddaughters
+                                together in an erotic tale of villains and dreamers, queens and revolutionaries,
+                                lepers
+                                and healers.
+                            </div>
+                            <button class="card-button">Buy</button>
+                        </div>
+                        <img class="book-img" src="assets/img/books/summer/summer_book_4.jpg" alt="book">
+                    </div>
+                    <div class="card card13" data-season="Autumn">
+                        <div class="card-description">
+
+                            <div class="staff-picks">Staff Picks
+                                <div class="line2"></div>
+                            </div>
+                            <div class="book-name">
+                                <div class="name">Casual Conversation</div>
+                                <div class="author">By Renia White</div>
+                            </div>
+                            <div class="book-description">White's impressive debut collection takes readers through
+                                and
+                                beyond the concepts of conversation and the casual - both what we say to each other
+                                and
+                                what we don't, examining the possibilities around how we construct and communicate
+                                identity.
+                            </div>
+                            <button class="card-button">Buy</button>
+                        </div>
+                        <img class="book-img" src="assets/img/books/autumn/autumn_book_1.jpg" alt="book">
+                    </div>
+                    <div class="card card14" data-season="Autumn">
+                        <div class="card-description">
+
+                            <div class="staff-picks">Staff Picks
+                                <div class="line2"></div>
+                            </div>
+                            <div class="book-name">
+                                <div class="name">The Great Fire</div>
+                                <div class="author">By Lou Ureneck</div>
+                            </div>
+                            <div class="book-description">The harrowing story of an ordinary American and a
+                                principled
+                                Naval officer who, horrified by the burning of Smyrna, led an extraordinary rescue
+                                effort that saved a quarter of a million refugees from the Armenian Genocide.
+                            </div>
+                            <button class="card-button">Buy</button>
+                        </div>
+                        <img class="book-img" src="assets/img/books/autumn/autumn_book_2.jpg" alt="book">
+                    </div>
+                    <div class="card card15" data-season="Autumn">
+                        <div class="card-description">
+
+                            <div class="staff-picks">Staff Picks
+                                <div class="line2"></div>
+                            </div>
+                            <div class="book-name">
+                                <div class="name">Rickey: The Life and Legend</div>
+                                <div class="author">By Howard Bryant</div>
+                            </div>
+                            <div class="book-description">With the fall rolling around, one can't help but think of
+                                baseball's postseason coming up! And what better way to prepare for it than reading
+                                the
+                                biography of one of the game's all-time greatest performers, the Man of Steal,
+                                Rickey
+                                Henderson?
+                            </div>
+                            <button class="card-button">Buy</button>
+                        </div>
+                        <img class="book-img" src="assets/img/books/autumn/autumn_book_3.jpg" alt="book">
+                    </div>
+                    <div class="card card16" data-season="Autumn">
+                        <div class="card-description">
+
+                            <div class="staff-picks">Staff Picks
+                                <div class="line2"></div>
+                            </div>
+                            <div class="book-name">
+                                <div class="name">Slug: And Other Stories</div>
+                                <div class="author">By Megan Milks</div>
+                            </div>
+                            <div class="book-description">Exes Tegan and Sara find themselves chained together by
+                                hairballs of codependency. A father and child experience the shared trauma of giving
+                                birth to gods from their wounds.
+                            </div>
+                            <button class="card-button">Buy</button>
+                        </div>
+                        <img class="book-img" src="assets/img/books/autumn/autumn_book_4.jpg" alt="book">
                     </div>
                 </div>
             </section>
@@ -213,7 +458,8 @@
                     <div class="line"></div>
                 </div>
                 <div class="section-coffee-shop-paragraph">In our library, we have of cozy
-                    coffee shop, welcoming in customers with frothy cappuccinos and friendly conversation. You can get a
+                    coffee shop, welcoming in customers with frothy cappuccinos and friendly conversation. You can
+                    get a
                     favorite book and read in coffee shop. Our barista to cook you best coffee, and also you can try
                     desserts from bakery.</div>
                 <div class="menu">
@@ -298,7 +544,8 @@
                             <div>For TTY service, please call <a href="tel" target="_blank" class="tel">(617)
                                     730-2370</a>
                             </div>
-                            <div>Putterham Library: <a href="tel" target="_blank" class="tel">(617) 730-2385</a></div>
+                            <div>Putterham Library: <a href="tel" target="_blank" class="tel">(617) 730-2385</a>
+                            </div>
                         </div>
                         <div>
                             <p><b>Senior Staff</b></p><span>Library Director: <a href="mailto:AmandaHirst@gmail.com"
@@ -334,7 +581,7 @@
                         <div class="get-card-description">You will be able to see a reader card after logging into
                             account or you can register a new account</div>
                         <div class="get-card-buttons">
-                            <button class="card-button">Sign Up</button>
+                            <button class="card-button" data-popup-button="registration-popup">Sign Up</button>
                             <button class="card-button card-button-ml-20">Log in</button>
                         </div>
                     </div>
@@ -366,7 +613,8 @@
             <div class="footer-line"></div>
             <div class="frame2">
                 <div>2023</div>
-                <div class="RS"><a class="tel" href="https://rs.school/js-stage0/" target="_blank">The Rolling Scopes
+                <div class="RS"><a class="tel" href="https://rs.school/js-stage0/" target="_blank">The Rolling
+                        Scopes
                         School</a></div>
                 <div><a class="tel" href=" https://github.com/tatsianask108" target="_blank">TatsSkov.</a>
                 </div>
@@ -374,6 +622,7 @@
         </footer>
     </div>
     <script src="index.js"></script>
+    <!-- <script src="slider.js"></script> -->
 </body>
 
 </html>
