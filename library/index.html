@@ -11,16 +11,143 @@
 </head>
 
 <body>
-    <div class="modal" id="my-modal">
-        <form class="modal__box">
-            <button class='modal__close-btn' id="close-modal-btn">
-                x</button>
-            <h1>my modal</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore dignissimos molestiae expedita!
-                Corrupti, deleniti? Minima distinctio deserunt ducimus incidunt tenetur.</p>
-            <p>lorem500</p>
-        </form>
+    <!-- REGISTRATION POPUP -->
+    <div class="modal" id='registration-popup' data-popup>
+        <div class="modal__box">
+            <button class='modal__close-btn' id="close-modal-btn" data-popup-close><svg width="19" height="19"
+                    viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g id="close_btn">
+                        <path id="Line 5" d="M2 16.8507L17 2.00003" stroke="#0C0C0E" stroke-width="3" />
+                        <path id="Line 6" d="M2 2.14926L17 17" stroke="#0C0C0E" stroke-width="3" />
+                    </g>
+                </svg></button>
+            <p>Register</p>
+            <form action="#" class="modal__form" id="form-registration">
+                <p class="modal__form__p">First name</p>
+                <input type="text" class="modal__form__input" name="userFirstName" required>
+                <p class="modal__form__p">Last name</p>
+                <input type="text" class="modal__form__input" name="userLastName" required>
+                <p class="modal__form__p">Email</p>
+                <input type="email" class="modal__form__input" name="userEmail" required>
+                <p class="modal__form__p">Password</p>
+                <input type="password" class="modal__form__input" minlength='1' name="userPassword" required>
+                <button class="card-button" id="form-registration-submit">Sign Up</button>
+                <p>Already have an account? <a href="#" data-popup-button="login-popup"><b>Login</b></a></p>
+            </form>
+
+        </div>
     </div>
+    <!-- LOGIN POPUP -->
+    <div class="modal" id='login-popup' data-popup>
+        <div class="modal__box">
+            <button class='modal__close-btn' id="close-modal-btn" data-popup-close><svg width="19" height="19"
+                    viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g id="close_btn">
+                        <path id="Line 5" d="M2 16.8507L17 2.00003" stroke="#0C0C0E" stroke-width="3" />
+                        <path id="Line 6" d="M2 2.14926L17 17" stroke="#0C0C0E" stroke-width="3" />
+                    </g>
+                </svg></button>
+            <p>Login</p>
+            <form action="#" class="modal__form" id="form-login">
+                <p class="modal__form__p">E-mail or readers card</p>
+                <input type="text" class="modal__form__input" name="userEmail" required>
+                <p class="modal__form__p">Password</p>
+                <input type="password" class="modal__form__input" name="userPassword" minlength='8' required>
+                <button class="card-button">Login</button>
+                <p>Don’t have an account? <a href="#" data-popup-button="registration-popup"><b>Register</b></a></p>
+            </form>
+        </div>
+    </div>
+    <!-- MY PROFILE POPUP -->
+    <div class="modal" id='profile-popup' data-popup>
+        <div class="profile__box">
+            <button class='modal__close-btn' id="close-modal-btn" data-popup-close><svg width="19" height="19"
+                    viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g id="close_btn">
+                        <path id="Line 5" d="M2 16.8507L17 2.00003" stroke="#0C0C0E" stroke-width="3" />
+                        <path id="Line 6" d="M2 2.14926L17 17" stroke="#0C0C0E" stroke-width="3" />
+                    </g>
+                </svg></button>
+            <div class="profile__box__left">
+                <div class="NS" data-auth-user-short-name></div>
+                <div class="nameSurname">
+                    <p data-auth-user-full-name></p>
+                </div>
+            </div>
+            <div class="right">
+                <span class="profile__box__title">My profile</span>
+                <div class="cards-profile">
+                    <div class="cards-profile-info">
+                        <div>Visits</div>
+                        <div><img src="assets/img/Union.svg" alt="u"></div>
+                        <div>23</div>
+                    </div>
+                    <div class="cards-profile-info">
+                        <div>Bonuses</div>
+                        <div><img src="assets/img/Star 1.svg" alt="u"></div>
+                        <div>23</div>
+                    </div>
+                    <div class="cards-profile-info">
+                        <div>Books</div>
+                        <div><img src="assets/img/book.svg" alt="u"></div>
+                        <div>23</div>
+                    </div>
+                </div>
+                <p class="renten-books">Rented books</p>
+                <ul>
+                    <li>The Last Queen, Clive Irving</li>
+                    <li>Dominicana, Angie Cruz</li>
+                </ul>
+                <div class="profile__box__numberline">
+                    <spand>Card number</spand><span>F00234030</span><img src="assets/img/icon copy.svg" alt="z">
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- BUY LIBRARY CARD POPUP -->
+    <div class="modal" id='buy-library-card-popup' data-popup>
+        <div class="buy-card-box">
+            <div class="buy-card-box__title">Buy a library card</div>
+            <button class='modal__close-btn' id="close-modal-btn" data-popup-close><svg width="19" height="19"
+                    viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g id="close_btn">
+                        <path id="Line 5" d="M2 16.8507L17 2" stroke="white" stroke-width="3" />
+                        <path id="Line 6" d="M2 2.14929L17 17" stroke="white" stroke-width="3" />
+                    </g>
+                </svg>
+            </button>
+            <div class="buy-card-box__content">
+                <div class="buy-card-box__content-left">
+                    <form action="#" class="modal__form" id="form-buy-library-card">
+                        <p class="modal__form__p">Bank card number</p>
+                        <input type="number" class="modal__form__input" name="userFirstName" required>
+                        <p class="modal__form__p">Expiration code</p>
+                        <input type="number" class="modal__form__input small" name="userLastName" required>
+                        <input type="number" class="modal__form__input small" name="userLastName" required>
+                        <p class="modal__form__p">CVC</p>
+                        <input type="email" class="modal__form__input small last" name="userEmail" required>
+                        <p class="modal__form__p">Cardholder name</p>
+                        <input type="text" class="modal__form__input" minlength='1' name="userPassword" required>
+                        <p class="modal__form__p">Postal code</p>
+                        <input type="number" class="modal__form__input" minlength='1' name="userPassword" required>
+                        <p class="modal__form__p">City / Town</p>
+                        <input type="text" class="modal__form__input" minlength='1' name="userPassword" required>
+                        <button class="card-button" id="form-registration-submit">Buy</button>
+                        <span class="book-price">$ 25.00</span>
+                    </form>
+                </div>
+
+                <div class="buy-card-box__content-right">If you are live, work, attend school, or pay property taxes in
+                    New York State, you can get a $25 digital library card right now using this online form. Visitors to
+                    New York State can also use this form to apply for a temporary card.</div>
+            </div>
+
+        </div>
+
+    </div>
+
+
 
     <!-- <a href="#" data-popup-button="login-dropdown"></a>
     <a href="#" data-popup-button="login-popup"></a>
@@ -43,27 +170,24 @@
                 <a href="#" data-popup-button="login-dropdown">
                     <img class="icon_profile" src="assets/img/icon_profile.svg" alt="icon_profile">
                 </a>
-
-
                 <button class="burger" data-burger aria-label="Открыть меню" aria-expanded="false">
                     <span class="burger__line"></span>
                 </button>
 
             </div>
-
-            <div id="login-dropdown" data-popup>
-                <!-- <a href="#" data-popup-close>X</a> -->
-                <p class="login-dropdown"><b>Profile</b></p>
+            <!-- DROPDOWN MENU -->
+            <div class='drop-menu-profile' id="login-dropdown" data-popup>
+                <p class="login-dropdown"><b data-auth-user-name>Profile</b></p>
                 <div class="line-dropdown"></div>
-                <p class="login-dropdown">Log In</p>
-                <button data-popup-button="registration-popup">
-                    <p class="login-dropdown">Register</p>
-                </button>
+                <div data-auth-menu>
+                    <button data-popup-button="login-popup">
+                        <p class="login-dropdown">Log In</p>
+                    </button>
+                    <button data-popup-button="registration-popup">
+                        <p class="login-dropdown">Register</p>
+                    </button>
+                </div>
             </div>
-
-
-
-
         </header>
         <main>
 
@@ -564,25 +688,28 @@
                 </div>
                 <div class="library-cards-container">
                     <div class="find-card">
-                        <p class="find-card-title">Find your Library card</p>
+                        <p class="find-card-title" data-auth-find-card-title>Find your Library card</p>
                         <div class="find-card-border">
                             <form action="#">
                                 <div class="form-wrapper-brown">
                                     <div class="form-title">Brooklyn Public Library</div>
-                                    <div><input class="form-input" type="text" placeholder="Reader's name"></div>
+                                    <div><input class="form-input" type="text" placeholder="Reader's name"
+                                            data-auth-readers-name>
+                                    </div>
                                     <div><input class="form-input" type="text" placeholder="Card number"></div>
                                 </div>
                                 <button class="form-button">Check the card</button>
                             </form>
                         </div>
                     </div>
-                    <div class="get-card">
+                    <div class="get-card" data-auth-get-card>
                         <div class="get-card-title">Get a reader card</div>
                         <div class="get-card-description">You will be able to see a reader card after logging into
                             account or you can register a new account</div>
                         <div class="get-card-buttons">
-                            <button class="card-button" data-popup-button="registration-popup">Sign Up</button>
-                            <button class="card-button card-button-ml-20">Log in</button>
+                            <button class="card-button" data-popup-button='registration-popup'>Sign Up</button>
+                            <button class="card-button card-button-ml-20" data-popup-button="login-popup">Log
+                                in</button>
                         </div>
                     </div>
                 </div>
