@@ -4,6 +4,8 @@
 function burger() {
   const burger = document?.querySelector('[data-burger]');
   const nav = document?.querySelector('[data-nav]');
+//changed
+  const icon = document?.querySelector('[data-auth-icon]');
   const navItems = nav?.querySelectorAll('a');
   const body = document.body;
 
@@ -14,9 +16,10 @@ function burger() {
   });
 
   document.addEventListener('click', (e) => {
-      if(e.target === nav || nav.contains(e.target) || e.target === burger) {
+      if(e.target === nav || nav.contains(e.target) || e.target === burger ) {
         return false;
-      } else if (body.classList.contains('stop-scroll')) {
+      } else if (body.classList.contains('stop-scroll') || e.target === icon) {
+        // ?????? || e.target === icon
         body.classList.remove('stop-scroll');
         burger?.classList.remove('burger--active');
         nav?.classList.remove('nav--visible');
@@ -124,8 +127,6 @@ setTimeout(sliderFunction, 500);
 
 
 
-
-
 function Account() {
 
   var userData = {
@@ -135,7 +136,7 @@ function Account() {
      * data-auth-{object_key}: html
      */
     userDomDataMap = {
-      '$user-name': 'userData.first_name',
+      '$readers-card-number': 'Math.ceil(Math.random()*1000000000)',
       '$user-full-name': `userData.first_name + ' ' + userData.last_name`,
       '$user-short-name': `(userData.first_name.charAt() + userData.last_name.charAt()).toUpperCase()`,
       //'$user-short-name': 'functionName()',
@@ -154,7 +155,9 @@ function Account() {
           <button class="card-button" data-popup-button='profile-popup'>Profile</button>
       </div>
       `,
-      // '$readers-name': `document.querySelector('[data-auth-readers-name]').setAttribute('value', 'user-full-name')`
+      // '$readers-name': `setAttribute('value', userData.first_name + ' ' + userData.last_name)`,
+      // '$readers-card-number': `document.querySelector('[data-auth-readers-card-number]').setAttribute('value', 'card-number')`
+      '$icon': `(userData.first_name.charAt() + userData.last_name.charAt()).toUpperCase()`,
     };
 
     function functionName() {return "any data"}
@@ -189,17 +192,27 @@ function Account() {
         })
       }
     }
-  
-
-    // changed
     function initUserActions() {
       let allBooks = document.getElementById('Favorites')
-      console.log(allBooks)
       let allBuyButtons = allBooks.querySelectorAll('.card-button')
-      console.log(allBuyButtons)
+      console.log(localStorage.getItem('boughtLibraryCard'))
       allBuyButtons.forEach(button => {
         button.setAttribute('data-popup-button', 'buy-library-card-popup')
     });
+    document.getElementById('form-buy-library-card').addEventListener('submit', () => {
+      localStorage.setItem('boughtLibraryCard', true)
+    })
+
+    if(localStorage.getItem('boughtLibraryCard') == 'true') {
+      allBuyButtons.forEach(button => {
+        button.removeAttribute('data-popup-button')
+        button.addEventListener('click', () => {
+        button.classList.add('card-button-disabled')
+        button.innerHTML = 'Own'
+        })
+        //??????
+      })}
+
   }
     init();
 }
@@ -209,10 +222,11 @@ Account();
 
 
 // FAVORITES
+/*стили в style.css находятся после строки - "СКРЫТИЕ И ПОЯВЛЕНИЕ КНИГ ПО СЕЗОНАМ" */
 const booksContainer = document.getElementById('books-container'),
         categoryFilter = document.getElementById('books-category');
 
-categoryFilter.addEventListener('change', function (e) {
+categoryFilter.addEventListener('change', () => {
   booksContainer.setAttribute('data-current', categoryFilter.season.value);
 });
 
@@ -221,34 +235,28 @@ categoryFilter.addEventListener('change', function (e) {
 const formRegistration = document.getElementById('form-registration')
 const formRegistrationFields = formRegistration.elements
 
-console.log(formRegistrationFields)
-
-formRegistration.addEventListener('submit', (e) => {
+formRegistration.addEventListener('submit', () => {
   if(formRegistration.checkValidity()) {
     for (let i = 0; i < formRegistrationFields.length; i++) {
       localStorage.setItem(formRegistrationFields[i].name, formRegistrationFields[i].value)
     }
     localStorage.setItem('isAuth', true); 
-    // localStorage.setItem('isRegistered', true); 
-
   }
 })
 
 // FORM LOGIN
-// changed
 const formLogin = document.getElementById('form-login')
 const formLoginFields = formLogin.elements
 
-console.log(formLoginFields)
-formLogin.addEventListener('submit', (e) => {
+formLogin.addEventListener('submit', () => {
   if(formLogin.checkValidity()) {
-    if (formLoginFields[0].name == localStorage.getItem('userEmail') && formLoginFields[1].name == localStorage.getItem('userPassword')) {
-      // localStorage.setItem('isAuth', true); 
-      // ?????
-      // Account();
+    if (formLoginFields[0].value == localStorage.getItem('userEmail') && formLoginFields[1].value == localStorage.getItem('userPassword')) {
+      localStorage.setItem('isAuth', true); 
     }
   }
-})
+}
+)
+
 
 
 // POPUPS

@@ -16,7 +16,7 @@ body {
 
 .wrapper {
     min-height: 100%;
-    position: relative;
+    /* position: relative; */
 }
 
 header {
@@ -26,7 +26,7 @@ header {
     box-sizing: border-box;
     padding: 20px;
     align-items: center;
-    position: relative;
+
 
 
 }
@@ -104,13 +104,17 @@ h1 {
 }
 
 .icon_profile {
+    position: relative;
     width: 28px;
     height: 28px;
     flex-shrink: 0;
     margin-left: 40px;
-    z-index: 11;
+    z-index: 12;
+}
 
-
+.icon_profile_container {
+    position: relative;
+    z-index: 20;
 }
 
 .burger {
@@ -509,7 +513,7 @@ input[type='radio'] {
     }
 }
 
-@keyframes fadeOut {
+/* @keyframes fadeOut {
     from {
         opacity: 1;
     }
@@ -517,22 +521,20 @@ input[type='radio'] {
     to {
         opacity: 0;
     }
-}
+} */
 
 
 .books-container .card {
     display: none;
     overflow: hidden;
-    /* -webkit-animation: fadeOut 2s linear;
-    animation: fadeOut 2s linear; */
 }
 
+/* СКРЫТИЕ И ПОЯВЛЕНИЕ КНИГ ПО СЕЗОНАМ */
 .books-container[data-current=Spring] .card[data-season=Spring],
 .books-container[data-current=Winter] .card[data-season=Winter],
 .books-container[data-current=Summer] .card[data-season=Summer],
 .books-container[data-current=Autumn] .card[data-season=Autumn] {
     display: block;
-    -webkit-animation: fadeIn 2s linear;
     animation: fadeIn 2s linear;
     opacity: 1;
 }
@@ -546,20 +548,6 @@ input[type='radio'] {
     margin-top: 40px;
 }
 
-/* .card5,
-.card6,
-.card7,
-.card8, */
-/* .card9,
-.card10,
-.card11,
-.card12,
-.card13,
-.card14,
-.card15,
-.card16 {
-    display: none;
-} */
 
 .book-img {
     position: relative;
@@ -663,7 +651,8 @@ input[type='radio'] {
     background: #BB945F;
 }
 
-button:disabled {
+.card-button-disabled {
+    cursor: default;
     border: 1px solid #BB945F;
     color: #BB945F;
     border-radius: 2px;
@@ -677,7 +666,14 @@ button:disabled {
     width: 75px;
     height: 30px;
     margin-top: auto;
+    cursor: default;
+    pointer-events: none;
+
 }
+
+.card-button-disabled {}
+
+;
 
 .section {
     position: relative;
@@ -1129,15 +1125,19 @@ footer {
 
 .drop-menu-profile.opened {
     top: 70px;
-    right: 50px;
+    right: 80px;
     background: #FFF;
     width: 80px;
     height: 115px;
     z-index: 2;
     display: block;
-    position: absolute;
+    position: relative;
     text-align: center;
-    font-size: 14px;
+    font-size: 14.5px;
+}
+
+.drop-menu-profile.opened>p {
+    font-size: 12px;
 }
 
 .line-dropdown {

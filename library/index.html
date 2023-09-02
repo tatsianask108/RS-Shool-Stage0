@@ -52,7 +52,7 @@
                 <p class="modal__form__p">E-mail or readers card</p>
                 <input type="text" class="modal__form__input" name="userEmail" required>
                 <p class="modal__form__p">Password</p>
-                <input type="password" class="modal__form__input" name="userPassword" minlength='8' required>
+                <input type="password" class="modal__form__input" name="userPassword" required>
                 <button class="card-button">Login</button>
                 <p>Don’t have an account? <a href="#" data-popup-button="registration-popup"><b>Register</b></a></p>
             </form>
@@ -80,17 +80,17 @@
                     <div class="cards-profile-info">
                         <div>Visits</div>
                         <div><img src="assets/img/Union.svg" alt="u"></div>
-                        <div>23</div>
+                        <div>0</div>
                     </div>
                     <div class="cards-profile-info">
                         <div>Bonuses</div>
                         <div><img src="assets/img/Star 1.svg" alt="u"></div>
-                        <div>23</div>
+                        <div>0</div>
                     </div>
                     <div class="cards-profile-info">
                         <div>Books</div>
                         <div><img src="assets/img/book.svg" alt="u"></div>
-                        <div>23</div>
+                        <div>0</div>
                     </div>
                 </div>
                 <p class="renten-books">Rented books</p>
@@ -99,7 +99,8 @@
                     <li>Dominicana, Angie Cruz</li>
                 </ul>
                 <div class="profile__box__numberline">
-                    <spand>Card number</spand><span>F00234030</span><img src="assets/img/icon copy.svg" alt="z">
+                    <spand>Card number</spand><span data-auth-readers-card-number></span><img
+                        src="assets/img/icon copy.svg" alt="z">
                 </div>
             </div>
         </div>
@@ -121,19 +122,19 @@
                 <div class="buy-card-box__content-left">
                     <form action="#" class="modal__form" id="form-buy-library-card">
                         <p class="modal__form__p">Bank card number</p>
-                        <input type="number" class="modal__form__input" name="userFirstName" required>
+                        <input type="number" class="modal__form__input" name="userFirstName">
                         <p class="modal__form__p">Expiration code</p>
-                        <input type="number" class="modal__form__input small" name="userLastName" required>
-                        <input type="number" class="modal__form__input small" name="userLastName" required>
+                        <input type="number" class="modal__form__input small" name="userLastName">
+                        <input type="number" class="modal__form__input small" name="userLastName">
                         <p class="modal__form__p">CVC</p>
-                        <input type="email" class="modal__form__input small last" name="userEmail" required>
+                        <input type="number" class="modal__form__input small last" name="userEmail">
                         <p class="modal__form__p">Cardholder name</p>
-                        <input type="text" class="modal__form__input" minlength='1' name="userPassword" required>
+                        <input type="text" class="modal__form__input" minlength='1' name="userPassword">
                         <p class="modal__form__p">Postal code</p>
-                        <input type="number" class="modal__form__input" minlength='1' name="userPassword" required>
+                        <input type="number" class="modal__form__input" minlength='1' name="userPassword">
                         <p class="modal__form__p">City / Town</p>
-                        <input type="text" class="modal__form__input" minlength='1' name="userPassword" required>
-                        <button class="card-button" id="form-registration-submit">Buy</button>
+                        <input type="text" class="modal__form__input" minlength='1' name="userPassword">
+                        <button class="card-button" id="buy-library-card-submit-btn">Buy</button>
                         <span class="book-price">$ 25.00</span>
                     </form>
                 </div>
@@ -167,27 +168,28 @@
                         <li class="nav-item"><a href="#Library-Card" class="nav-link">Library Card</a></li>
                     </ul>
                 </nav>
-                <a href="#" data-popup-button="login-dropdown">
+                <a href="#" class="icon_profile_container" data-popup-button="login-dropdown" data-auth-icon>
                     <img class="icon_profile" src="assets/img/icon_profile.svg" alt="icon_profile">
                 </a>
+                <!-- DROPDOWN MENU -->
+                <div class='drop-menu-profile' id="login-dropdown" data-popup>
+                    <p class="login-dropdown"><b data-auth-readers-card-number>Profile</b></p>
+                    <div class="line-dropdown"></div>
+                    <div data-auth-menu>
+                        <button data-popup-button="login-popup">
+                            <p class="login-dropdown">Log In</p>
+                        </button>
+                        <button data-popup-button="registration-popup">
+                            <p class="login-dropdown">Register</p>
+                        </button>
+                    </div>
+                </div>
                 <button class="burger" data-burger aria-label="Открыть меню" aria-expanded="false">
                     <span class="burger__line"></span>
                 </button>
 
             </div>
-            <!-- DROPDOWN MENU -->
-            <div class='drop-menu-profile' id="login-dropdown" data-popup>
-                <p class="login-dropdown"><b data-auth-user-name>Profile</b></p>
-                <div class="line-dropdown"></div>
-                <div data-auth-menu>
-                    <button data-popup-button="login-popup">
-                        <p class="login-dropdown">Log In</p>
-                    </button>
-                    <button data-popup-button="registration-popup">
-                        <p class="login-dropdown">Register</p>
-                    </button>
-                </div>
-            </div>
+
         </header>
         <main>
 
@@ -334,7 +336,7 @@
                                 family) exploring how the Windsors have evolved and thrived as the modern world has
                                 changed
                                 around them.</div>
-                            <button disabled class="button-disabled">Own</button>
+                            <button class="card-button">Buy</button>
                         </div>
                         <img class="book-img" src="assets/img/books/winter/winter_book_4.jpg" alt="book">
                     </div>
