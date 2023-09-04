@@ -16,7 +16,6 @@ body {
 
 .wrapper {
     min-height: 100%;
-    /* position: relative; */
 }
 
 header {
@@ -26,9 +25,7 @@ header {
     box-sizing: border-box;
     padding: 20px;
     align-items: center;
-
-
-
+    position: relative;
 }
 
 button {
@@ -38,6 +35,10 @@ button {
     cursor: pointer;
     font-size: inherit;
     font-family: inherit;
+}
+
+a {
+    text-decoration: none;
 }
 
 /* .burger {
@@ -51,6 +52,8 @@ button {
 .header-inner-wrapper {
     display: flex;
     align-items: center;
+
+
 
 }
 
@@ -104,17 +107,30 @@ h1 {
 }
 
 .icon_profile {
-    position: relative;
-    width: 28px;
-    height: 28px;
-    flex-shrink: 0;
-    margin-left: 40px;
-    z-index: 12;
+    background: #000;
 }
 
 .icon_profile_container {
-    position: relative;
+    /* position: relative; */
     z-index: 20;
+}
+
+.icon-instead {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: white;
+    margin-left: 40px;
+    z-index: 12;
+    color: #BB945F;
+
+}
+
+.icon-instead-visible {
+    display: flex;
 }
 
 .burger {
@@ -651,7 +667,7 @@ input[type='radio'] {
     background: #BB945F;
 }
 
-.card-button-disabled {
+.card-button.disabled {
     cursor: default;
     border: 1px solid #BB945F;
     color: #BB945F;
@@ -958,7 +974,7 @@ input[type='radio'] {
     background: #FFF;
     /* flex-shrink: 0; */
 
-    color: #8E8E8E;
+    color: #BB945F;
     font-family: Forum;
     font-size: 30px;
     font-style: normal;
@@ -1121,17 +1137,18 @@ footer {
 /* drop-menu-profile */
 .drop-menu-profile {
     display: none;
+
 }
 
 .drop-menu-profile.opened {
     top: 70px;
-    right: 80px;
+    right: 0px;
     background: #FFF;
     width: 80px;
     height: 115px;
     z-index: 2;
     display: block;
-    position: relative;
+    position: absolute;
     text-align: center;
     font-size: 14.5px;
 }
@@ -1288,18 +1305,17 @@ footer {
 }
 
 .nameSurname {
-    width: 120px;
-
+    min-width: 120px;
+    min-height: max-content;
+    hyphens: auto;
     background-color: #fff;
-
-
-}
-
-.nameSurname p {
     padding: 5px 15px;
     margin: 0;
+    hyphens: auto;
 
 }
+
+.nameSurname p {}
 
 .right {
     display: flex;

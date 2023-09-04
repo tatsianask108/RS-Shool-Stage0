@@ -11,6 +11,9 @@
 </head>
 
 <body>
+    <!-- <form id="change-name" action="#">
+        <input style="width: 100%" name="first_name" value="">
+    </form> -->
     <!-- REGISTRATION POPUP -->
     <div class="modal" id='registration-popup' data-popup>
         <div class="modal__box">
@@ -24,13 +27,13 @@
             <p>Register</p>
             <form action="#" class="modal__form" id="form-registration">
                 <p class="modal__form__p">First name</p>
-                <input type="text" class="modal__form__input" name="userFirstName" required>
+                <input type="text" class="modal__form__input" name="first_name" required>
                 <p class="modal__form__p">Last name</p>
-                <input type="text" class="modal__form__input" name="userLastName" required>
+                <input type="text" class="modal__form__input" name="last_name" required>
                 <p class="modal__form__p">Email</p>
-                <input type="email" class="modal__form__input" name="userEmail" required>
+                <input type="email" class="modal__form__input" name="email" required>
                 <p class="modal__form__p">Password</p>
-                <input type="password" class="modal__form__input" minlength='1' name="userPassword" required>
+                <input type="password" class="modal__form__input" minlength='1' name="password" required>
                 <button class="card-button" id="form-registration-submit">Sign Up</button>
                 <p>Already have an account? <a href="#" data-popup-button="login-popup"><b>Login</b></a></p>
             </form>
@@ -50,9 +53,9 @@
             <p>Login</p>
             <form action="#" class="modal__form" id="form-login">
                 <p class="modal__form__p">E-mail or readers card</p>
-                <input type="text" class="modal__form__input" name="userEmail" required>
+                <input type="text" class="modal__form__input" name="email" required>
                 <p class="modal__form__p">Password</p>
-                <input type="password" class="modal__form__input" name="userPassword" required>
+                <input type="password" class="modal__form__input" name="password" required>
                 <button class="card-button">Login</button>
                 <p>Don’t have an account? <a href="#" data-popup-button="registration-popup"><b>Register</b></a></p>
             </form>
@@ -70,8 +73,8 @@
                 </svg></button>
             <div class="profile__box__left">
                 <div class="NS" data-auth-user-short-name></div>
-                <div class="nameSurname">
-                    <p data-auth-user-full-name></p>
+                <div data-auth-user-full-name class="nameSurname">
+                    <p></p>
                 </div>
             </div>
             <div class="right">
@@ -90,13 +93,11 @@
                     <div class="cards-profile-info">
                         <div>Books</div>
                         <div><img src="assets/img/book.svg" alt="u"></div>
-                        <div>0</div>
+                        <div data-auth-bought-books-count>0</div>
                     </div>
                 </div>
                 <p class="renten-books">Rented books</p>
-                <ul>
-                    <li>The Last Queen, Clive Irving</li>
-                    <li>Dominicana, Angie Cruz</li>
+                <ul data-auth-bought-books-list>
                 </ul>
                 <div class="profile__box__numberline">
                     <spand>Card number</spand><span data-auth-readers-card-number></span><img
@@ -168,8 +169,12 @@
                         <li class="nav-item"><a href="#Library-Card" class="nav-link">Library Card</a></li>
                     </ul>
                 </nav>
-                <a href="#" class="icon_profile_container" data-popup-button="login-dropdown" data-auth-icon>
-                    <img class="icon_profile" src="assets/img/icon_profile.svg" alt="icon_profile">
+
+                <a href="#" class="icon_profile_container" data-popup-button="login-dropdown">
+                    <div class="icon-instead" title="???" data-auth-user-short-name>
+                        <img class="icon_profile" src="assets/img/icon_profile.svg" alt="icon_profile">
+                    </div>
+
                 </a>
                 <!-- DROPDOWN MENU -->
                 <div class='drop-menu-profile' id="login-dropdown" data-popup>
@@ -184,10 +189,10 @@
                         </button>
                     </div>
                 </div>
+
                 <button class="burger" data-burger aria-label="Открыть меню" aria-expanded="false">
                     <span class="burger__line"></span>
                 </button>
-
             </div>
 
         </header>
@@ -269,8 +274,8 @@
                                 <div class="line2"></div>
                             </div>
                             <div class="book-name">
-                                <div class="name">The Book Eaters</div>
-                                <div class="author">By Sunyi Dean</div>
+                                <div class="name" data-book-name>The Book Eaters</div>
+                                <div class="author" data-book-author>By Sunyi Dean</div>
                             </div>
                             <div class="book-description">An unusual sci-fi story about a book eater woman who tries
                                 desperately to save her dangerous mind-eater son from tradition and certain death.
@@ -288,8 +293,8 @@
                                 <div class="line2"></div>
                             </div>
                             <div class="book-name">
-                                <div class="name">Cackle</div>
-                                <div class="author">By Rachel Harrison</div>
+                                <div class="name" data-book-name>Cackle</div>
+                                <div class="author" data-book-author>By Rachel Harrison</div>
                             </div>
                             <div class="book-description">Are your Halloween movies of choice The Witches of
                                 Eastwick
@@ -308,8 +313,8 @@
                                 <div class="line2"></div>
                             </div>
                             <div class="book-name">
-                                <div class="name">Dante: Poet of the Secular World</div>
-                                <div class="author">By Erich Auerbach</div>
+                                <div class="name" data-book-name>Dante: Poet of the Secular World</div>
+                                <div class="author" data-book-author>By Erich Auerbach</div>
                             </div>
                             <div class="book-description">Auerbach's engaging book places the 'Comedy' within the
                                 tradition
@@ -327,8 +332,8 @@
                                 <div class="line2"></div>
                             </div>
                             <div class="book-name">
-                                <div class="name">The Last Queen</div>
-                                <div class="author">By Clive Irving</div>
+                                <div class="name" data-book-name>The Last Queen</div>
+                                <div class="author" data-book-author>By Clive Irving</div>
                             </div>
                             <div class="book-description">A timely and revelatory new biography of Queen Elizabeth
                                 (and
@@ -347,8 +352,8 @@
                                 <div class="line2"></div>
                             </div>
                             <div class="book-name">
-                                <div class="name">The Body</div>
-                                <div class="author">By Stephen King</div>
+                                <div class="name" data-book-name>The Body</div>
+                                <div class="author" data-book-author>By Stephen King</div>
                             </div>
                             <div class="book-description">Powerful novel that takes you back to a nostalgic time,
                                 exploring
@@ -364,8 +369,8 @@
                                 <div class="line2"></div>
                             </div>
                             <div class="book-name">
-                                <div class="name">Carry: A Memoir of Survival on Stolen Land</div>
-                                <div class="author">By Toni Jenson</div>
+                                <div class="name" data-book-name>Carry: A Memoir of Survival on Stolen Land</div>
+                                <div class="author" data-book-author>By Toni Jenson</div>
                             </div>
                             <div class="book-description">This memoir about the author's relationship with gun
                                 violence
@@ -384,8 +389,8 @@
                                 <div class="line2"></div>
                             </div>
                             <div class="book-name">
-                                <div class="name">Days of Distraction</div>
-                                <div class="author">By Alexandra Chang</div>
+                                <div class="name" data-book-name>Days of Distraction</div>
+                                <div class="author" data-book-author>By Alexandra Chang</div>
                             </div>
                             <div class="book-description">A sardonic view of Silicon Valley culture, a meditation on
                                 race, and a journal of displacement and belonging, all in one form-defying package
@@ -403,8 +408,8 @@
                                 <div class="line2"></div>
                             </div>
                             <div class="book-name">
-                                <div class="name">Dominicana</div>
-                                <div class="author">By Angie Cruz</div>
+                                <div class="name" data-book-name>Dominicana</div>
+                                <div class="author" data-book-author>By Angie Cruz</div>
                             </div>
                             <div class="book-description">A fascinating story of a teenage girl who marries a man
                                 twice
@@ -423,8 +428,8 @@
                                 <div class="line2"></div>
                             </div>
                             <div class="book-name">
-                                <div class="name">Crude: A Memoir</div>
-                                <div class="author">By Pablo Fajardo & ​​Sophie Tardy-Joubert</div>
+                                <div class="name" data-book-name>Crude: A Memoir</div>
+                                <div class="author" data-book-author>By Pablo Fajardo & ​​Sophie Tardy-Joubert</div>
                             </div>
                             <div class="book-description">Drawing and color by Damien Roudeau | This book
                                 illustrates
@@ -443,8 +448,8 @@
                                 <div class="line2"></div>
                             </div>
                             <div class="book-name">
-                                <div class="name">Let My People Go Surfing </div>
-                                <div class="author">By Yvon Chouinard</div>
+                                <div class="name" data-book-name>Let My People Go Surfing </div>
+                                <div class="author" data-book-author>By Yvon Chouinard</div>
                             </div>
                             <div class="book-description">Chouinard—climber, businessman, environmentalist—shares
                                 tales
@@ -464,8 +469,8 @@
                                 <div class="line2"></div>
                             </div>
                             <div class="book-name">
-                                <div class="name">The Octopus Museum: Poems</div>
-                                <div class="author">By Brenda Shaughnessy</div>
+                                <div class="name" data-book-name>The Octopus Museum: Poems</div>
+                                <div class="author" data-book-author>By Brenda Shaughnessy</div>
                             </div>
                             <div class="book-description">This collection of bold and scathingly beautiful feminist
                                 poems imagines what comes after our current age of environmental destruction,
@@ -483,8 +488,8 @@
                                 <div class="line2"></div>
                             </div>
                             <div class="book-name">
-                                <div class="name">Shark Dialogues: A Novel</div>
-                                <div class="author">By Kiana Davenport</div>
+                                <div class="name" data-book-name>Shark Dialogues: A Novel</div>
+                                <div class="author" data-book-author>By Kiana Davenport</div>
                             </div>
                             <div class="book-description">An epic saga of seven generations of one family
                                 encompasses
@@ -504,8 +509,8 @@
                                 <div class="line2"></div>
                             </div>
                             <div class="book-name">
-                                <div class="name">Casual Conversation</div>
-                                <div class="author">By Renia White</div>
+                                <div class="name" data-book-name>Casual Conversation</div>
+                                <div class="author" data-book-author>By Renia White</div>
                             </div>
                             <div class="book-description">White's impressive debut collection takes readers through
                                 and
@@ -525,8 +530,8 @@
                                 <div class="line2"></div>
                             </div>
                             <div class="book-name">
-                                <div class="name">The Great Fire</div>
-                                <div class="author">By Lou Ureneck</div>
+                                <div class="name" data-book-name>The Great Fire</div>
+                                <div class="author" data-book-author>By Lou Ureneck</div>
                             </div>
                             <div class="book-description">The harrowing story of an ordinary American and a
                                 principled
@@ -544,8 +549,8 @@
                                 <div class="line2"></div>
                             </div>
                             <div class="book-name">
-                                <div class="name">Rickey: The Life and Legend</div>
-                                <div class="author">By Howard Bryant</div>
+                                <div class="name" data-book-name>Rickey: The Life and Legend</div>
+                                <div class="author" data-book-author>By Howard Bryant</div>
                             </div>
                             <div class="book-description">With the fall rolling around, one can't help but think of
                                 baseball's postseason coming up! And what better way to prepare for it than reading
@@ -565,8 +570,8 @@
                                 <div class="line2"></div>
                             </div>
                             <div class="book-name">
-                                <div class="name">Slug: And Other Stories</div>
-                                <div class="author">By Megan Milks</div>
+                                <div class="name" data-book-name>Slug: And Other Stories</div>
+                                <div class="author" data-book-author>By Megan Milks</div>
                             </div>
                             <div class="book-description">Exes Tegan and Sara find themselves chained together by
                                 hairballs of codependency. A father and child experience the shared trauma of giving
@@ -692,11 +697,11 @@
                     <div class="find-card">
                         <p class="find-card-title" data-auth-find-card-title>Find your Library card</p>
                         <div class="find-card-border">
-                            <form action="#">
+                            <form id='form-libr-card' action="#">
                                 <div class="form-wrapper-brown">
                                     <div class="form-title">Brooklyn Public Library</div>
-                                    <div><input class="form-input" type="text" placeholder="Reader's name"
-                                            data-auth-readers-name>
+                                    <div data-auth-readers-input-name>
+                                        <input class="form-input" type="text" placeholder="Reader's name" value="">
                                     </div>
                                     <div><input class="form-input" type="text" placeholder="Card number"></div>
                                 </div>
