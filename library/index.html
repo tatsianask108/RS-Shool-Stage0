@@ -33,9 +33,10 @@
                 <p class="modal__form__p">Email</p>
                 <input type="email" class="modal__form__input" name="email" required>
                 <p class="modal__form__p">Password</p>
-                <input type="password" class="modal__form__input" minlength='1' name="password" required>
+                <input type="password" class="modal__form__input" minlength='8' name="password" required>
                 <button class="card-button" id="form-registration-submit">Sign Up</button>
-                <p>Already have an account? <a href="#" data-popup-button="login-popup"><b>Login</b></a></p>
+                <p>Already have an account?<a href="#" data-popup-button="login-popup"><b>Login</b></a>
+                </p>
             </form>
 
         </div>
@@ -55,7 +56,7 @@
                 <p class="modal__form__p">E-mail or readers card</p>
                 <input type="text" class="modal__form__input" name="email" required>
                 <p class="modal__form__p">Password</p>
-                <input type="password" class="modal__form__input" name="password" required>
+                <input type="password" class="modal__form__input" name="password" minlength='8' required>
                 <button class="card-button">Login</button>
                 <p>Don’t have an account? <a href="#" data-popup-button="registration-popup"><b>Register</b></a></p>
             </form>
@@ -79,16 +80,16 @@
             </div>
             <div class="right">
                 <span class="profile__box__title">My profile</span>
-                <div class="cards-profile">
+                <div class="cards-profile" data-profile-block>
                     <div class="cards-profile-info">
                         <div>Visits</div>
                         <div><img src="assets/img/Union.svg" alt="u"></div>
-                        <div>0</div>
+                        <div data-auth-visits>0</div>
                     </div>
                     <div class="cards-profile-info">
                         <div>Bonuses</div>
                         <div><img src="assets/img/Star 1.svg" alt="u"></div>
-                        <div>0</div>
+                        <div>1240</div>
                     </div>
                     <div class="cards-profile-info">
                         <div>Books</div>
@@ -100,8 +101,8 @@
                 <ul data-auth-bought-books-list>
                 </ul>
                 <div class="profile__box__numberline">
-                    <spand>Card number</spand><span data-auth-readers-card-number></span><img
-                        src="assets/img/icon copy.svg" alt="z">
+                    <span>Card number</span><span data-auth-readers-card-number></span><button id="copyToClBtn"><img
+                            src="assets/img/icon copy.svg" alt="z"></button>
                 </div>
             </div>
         </div>
@@ -123,19 +124,19 @@
                 <div class="buy-card-box__content-left">
                     <form action="#" class="modal__form" id="form-buy-library-card">
                         <p class="modal__form__p">Bank card number</p>
-                        <input type="number" class="modal__form__input" name="userFirstName">
+                        <input type="number" class="modal__form__input" required>
                         <p class="modal__form__p">Expiration code</p>
-                        <input type="number" class="modal__form__input small" name="userLastName">
-                        <input type="number" class="modal__form__input small" name="userLastName">
+                        <input type="number" class="modal__form__input small" required>
+                        <input type="number" class="modal__form__input small" required>
                         <p class="modal__form__p">CVC</p>
-                        <input type="number" class="modal__form__input small last" name="userEmail">
+                        <input type="number" class="modal__form__input small last" required>
                         <p class="modal__form__p">Cardholder name</p>
-                        <input type="text" class="modal__form__input" minlength='1' name="userPassword">
+                        <input type="text" class="modal__form__input" minlength='1' required>
                         <p class="modal__form__p">Postal code</p>
-                        <input type="number" class="modal__form__input" minlength='1' name="userPassword">
+                        <input type="text" class="modal__form__input" minlength='1' required>
                         <p class="modal__form__p">City / Town</p>
-                        <input type="text" class="modal__form__input" minlength='1' name="userPassword">
-                        <button class="card-button" id="buy-library-card-submit-btn">Buy</button>
+                        <input type="text" class="modal__form__input" minlength='1' required>
+                        <button class="by-card-btn" id="buy-library-card-submit-btn">Buy</button>
                         <span class="book-price">$ 25.00</span>
                     </form>
                 </div>
@@ -170,23 +171,25 @@
                     </ul>
                 </nav>
 
-                <a href="#" class="icon_profile_container" data-popup-button="login-dropdown">
-                    <div class="icon-instead" title="???" data-auth-user-short-name>
-                        <img class="icon_profile" src="assets/img/icon_profile.svg" alt="icon_profile">
-                    </div>
+                <div class="profile-menu-container">
+                    <a href="#" class="icon_profile_container" data-popup-button="login-dropdown">
+                        <span class="icon-instead" data-auth-user-short-name>
+                            <img class="icon_profile" src="assets/img/icon_profile.svg" alt="icon profile">
+                        </span>
 
-                </a>
-                <!-- DROPDOWN MENU -->
-                <div class='drop-menu-profile' id="login-dropdown" data-popup>
-                    <p class="login-dropdown"><b data-auth-readers-card-number>Profile</b></p>
-                    <div class="line-dropdown"></div>
-                    <div data-auth-menu>
-                        <button data-popup-button="login-popup">
-                            <p class="login-dropdown">Log In</p>
-                        </button>
-                        <button data-popup-button="registration-popup">
-                            <p class="login-dropdown">Register</p>
-                        </button>
+                    </a>
+                    <!-- DROPDOWN MENU -->
+                    <div class='drop-menu-profile' id="login-dropdown" data-popup>
+                        <p class="login-dropdown"><b data-auth-readers-card-number>Profile</b></p>
+                        <div class="line-dropdown"></div>
+                        <div data-auth-menu>
+                            <button data-popup-button="login-popup">
+                                <p class="login-dropdown">Log In</p>
+                            </button>
+                            <button data-popup-button="registration-popup">
+                                <p class="login-dropdown">Register</p>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -703,9 +706,12 @@
                                     <div data-auth-readers-input-name>
                                         <input class="form-input" type="text" placeholder="Reader's name" value="">
                                     </div>
-                                    <div><input class="form-input" type="text" placeholder="Card number"></div>
+                                    <div data-auth-readers-card-number-r><input class="form-input" type="text"
+                                            placeholder="Card number" value=""></div>
                                 </div>
-                                <button class="form-button">Check the card</button>
+                                <div class="card-profile-block-container" data-auth-readers-profile-block>
+                                    <button class="form-button">Check the card</button>
+                                </div>
                             </form>
                         </div>
                     </div>

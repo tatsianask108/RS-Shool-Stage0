@@ -12,7 +12,10 @@ body {
     height: 100%;
     font-family: 'Forum', cursive;
     font-family: 'Inter', sans-serif;
+    scroll-behavior: smooth;
+
 }
+
 
 .wrapper {
     min-height: 100%;
@@ -38,7 +41,7 @@ button {
 }
 
 a {
-    text-decoration: none;
+    /* text-decoration: none; */
 }
 
 /* .burger {
@@ -110,9 +113,14 @@ h1 {
     background: #000;
 }
 
-.icon_profile_container {
-    /* position: relative; */
-    z-index: 20;
+.profile-menu-container {
+    position: relative;
+    z-index: 10;
+
+}
+
+.profile-menu-container>a {
+    text-decoration: none;
 }
 
 .icon-instead {
@@ -551,7 +559,7 @@ input[type='radio'] {
 .books-container[data-current=Summer] .card[data-season=Summer],
 .books-container[data-current=Autumn] .card[data-season=Autumn] {
     display: block;
-    animation: fadeIn 2s linear;
+    animation: fadeIn 1s linear;
     opacity: 1;
 }
 
@@ -1017,6 +1025,10 @@ input[type='radio'] {
     background: #BB945F;
 }
 
+.card-profile-block-container>.cards-profile {
+    justify-content: center;
+}
+
 .get-card {
     text-align: right;
     width: 456px;
@@ -1141,7 +1153,7 @@ footer {
 }
 
 .drop-menu-profile.opened {
-    top: 70px;
+    top: 100%;
     right: 0px;
     background: #FFF;
     width: 80px;
@@ -1150,7 +1162,7 @@ footer {
     display: block;
     position: absolute;
     text-align: center;
-    font-size: 14.5px;
+    font-size: 14.8px;
 }
 
 .drop-menu-profile.opened>p {
@@ -1164,6 +1176,7 @@ footer {
     position: relative;
     left: 25%;
     margin-bottom: 10px;
+    margin-top: 5px;
 }
 
 .login-dropdown {
@@ -1187,6 +1200,7 @@ footer {
     overflow-y: auto;
     visibility: hidden;
     opacity: 0;
+    transition: opacity .4s, visibility .4s;
 }
 
 .modal__box {
@@ -1195,7 +1209,7 @@ footer {
     padding: 20px 25px;
     z-index: 1;
     background-color: #fff;
-    margin: 30px 15px;
+    /* margin: 30px 15px; */
     position: relative;
 }
 
@@ -1209,8 +1223,8 @@ footer {
     background-color: transparent;
     padding: 0;
     position: absolute;
-    top: 15px;
-    right: 15px;
+    top: 25px;
+    right: 25px;
     cursor: pointer;
 
 }
@@ -1243,7 +1257,7 @@ footer {
     color: #000;
 }
 
-.modal__form:last-child {
+.modal__form>p:last-child {
     color: #000;
     text-shadow: 0px 2px 3px rgba(255, 255, 255, 0.16);
     font-family: Inter;
@@ -1251,6 +1265,7 @@ footer {
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    margin-bottom: 0;
 }
 
 .modal__box>p {
@@ -1264,7 +1279,14 @@ footer {
     letter-spacing: 0.4px;
     text-transform: uppercase;
     text-align: center;
-    margin: 0;
+    margin-top: 0;
+    margin-bottom: 20px;
+
+}
+
+.modal__form>p>a {
+    letter-spacing: 1px;
+    margin-left: 10px;
 }
 
 .profile__box {
@@ -1285,33 +1307,41 @@ footer {
 }
 
 .profile__box__left {
+    /* display: flex; */
+    flex-direction: column;
     background-color: black;
     width: 170px;
-    display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
 .NS {
     display: flex;
+    position: relative;
+    top: 140px;
+    left: 42px;
     width: 80px;
     height: 80px;
     background-color: #fff;
     align-items: center;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     color: #BB945F;
 }
 
 .nameSurname {
-    min-width: 120px;
+    position: relative;
+    top: 140px;
+    left: 23px;
+    box-sizing: border-box;
+    width: 120px;
     min-height: max-content;
     hyphens: auto;
     background-color: #fff;
     padding: 5px 15px;
     margin: 0;
-    hyphens: auto;
+    font-size: 17px;
+    text-align: center;
 
 }
 
@@ -1322,6 +1352,7 @@ footer {
     flex-direction: column;
     box-sizing: border-box;
     padding: 40px 20px;
+    width: 440px;
 }
 
 .right li {
@@ -1330,7 +1361,7 @@ footer {
 
 .right ul {
     margin-top: 0;
-    margin-bottom: 40px;
+    /* margin-bottom: 40px; */
 }
 
 
@@ -1367,6 +1398,10 @@ footer {
     font-size: 25px;
     margin-top: 20px;
     margin-bottom: 30px;
+}
+
+[data-auth-bought-books-list] {
+    overflow-y: auto;
 }
 
 .profile__box__numberline {
@@ -1444,6 +1479,7 @@ footer {
 }
 
 .book-price {
+    display: inline-block;
     color: #0C0C0E;
     font-family: Inter;
     font-size: 20px;
@@ -1453,5 +1489,26 @@ footer {
     /* 100% */
     letter-spacing: 2px;
     text-transform: uppercase;
-    margin-left: 20px;
+    margin-left: 22px;
+}
+
+.by-card-btn {
+    border-radius: 2px;
+    border: 1px solid #0C0C0E;
+    color: #0C0C0E;
+    text-align: center;
+    font-family: Inter;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 1px;
+    width: 75px;
+    height: 30px;
+
+    margin-top: auto;
+
+    background-color: inherit;
+    cursor: default;
+    /* pointer-events: none; */
 }

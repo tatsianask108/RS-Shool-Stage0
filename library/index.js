@@ -131,16 +131,16 @@ function Account() {
   let userData = {
     first_name: null, last_name: null, email: null, full_name: null,
     boughtBooks: {},
-    is_bought_library_card: false, is_auth: false
+    is_bought_library_card: false, is_auth: false,
+    visits: 0, card_number: null
   }
   /**
    * data-auth-{object_key}: html
    */
   let userDomDataMap = {
-    '$readers-card-number': 'Math.ceil(Math.random()*1000000000)',
+    '$readers-card-number': `userData.card_number`,
     '$user-full-name': `userData.full_name`,
-    '$user-short-name': `(userData.first_name.charAt() + userData.last_name.charAt()).toUpperCase()`,
-    //'$user-short-name': 'functionName()',
+    '$user-short-name': `'<div title="' + userData.full_name + '">' + (userData.first_name.charAt() + userData.last_name.charAt()).toUpperCase() + '</div>'`,
     'menu': `
         <button data-popup-button="profile-popup">
             <p class="login-dropdown">My profile</p>
@@ -158,11 +158,10 @@ function Account() {
       `,
     '$bought-books-list': 'getBoughtBooksList()',
     '$readers-input-name': 'getReadersInputName()',
+    '$readers-card-number-r': 'getReadersInputCardNumber()',
     '$bought-books-count': `Object.keys(userData.boughtBooks).length`,
-
-    // '$readers-name.value': `userData.first_name + ' ' + userData.last_name`,
-    // '$readers-card-number': `document.querySelector('[data-auth-readers-card-number]').setAttribute('value', 'card-number')`
-
+    '$visits': `userData.visits`,
+    '$readers-profile-block': `getUserProfileBlock()`,
   };
 
   function init() {
@@ -196,6 +195,10 @@ function Account() {
     userData.full_name = localStorage.getItem('first_name') + ' ' + localStorage.getItem('last_name');
     userData.is_bought_library_card = JSON.parse(localStorage.getItem('is_bought_library_card'));
     userData.is_auth = JSON.parse(localStorage.getItem('is_auth'));
+    userData.visits = +localStorage.getItem('visits');
+    userData.card_number = localStorage.getItem('card_number');
+
+
 
     try {
       let boughtBooksLocalStorageObject = JSON.parse(localStorage.getItem('boughtBooks'));
@@ -217,6 +220,37 @@ function Account() {
   }
 
   function showUserData() {
+
+
+    function getReadersInputName() {
+      return isAuth() ?
+        `<input class="form-input" type="text" placeholder="Reader's name" value="` + userData.full_name + `">` :
+        '';
+    }
+
+    function getReadersInputCardNumber() {
+      return isAuth() ?
+        `<input class="form-input" type="text" placeholder="Reader's name" value="` + userData.card_number + `">` :
+        '';
+    }
+
+    function getBoughtBooksList() {
+      let resultHtmlList = '';
+
+      for (let [key, value] of Object.entries(userData.boughtBooks)) {
+
+        resultHtmlList += '<li>' + value.name + ', ' + value.author.slice(2) + '</li>'
+        // <a data-book-id="' + key + '" href="#"></a>
+      }
+
+
+      return resultHtmlList;
+    }
+
+    function getUserProfileBlock() {
+      const block = document.querySelector('[data-profile-block]');
+      return block ? block.outerHTML : '';
+    }
 
     // works with DataMap
     for (let [key, value] of Object.entries(userDomDataMap)) {
@@ -242,25 +276,29 @@ function Account() {
     }
   }
 
-  function getReadersInputName() {
-    return isAuth() ?
-      `<input class="form-input" type="text" placeholder="Reader's name" value="` + userData.full_name + `">` :
-      '';
-  }
-
-  function getBoughtBooksList() {
-    let resultHtmlList = '';
-
-    for (let [key, value] of Object.entries(userData.boughtBooks)) {
-      resultHtmlList += '<li>' + value.author + ', ' + value.name + '</li>'
-    }
-
-    return resultHtmlList;
-  }
-
   function initActions() {
-    let allBuyButtons = document.getElementById('Favorites')?.querySelectorAll('.card-button')
 
+    function copyToClipboard() {
+      const textToCopy = document.querySelector('[data-auth-readers-card-number]');
+      document.getElementById('copyToClBtn').addEventListener('click', () => {
+        navigator.clipboard.writeText(textToCopy.innerHTML).then(function () {
+          alert('Текст успешно скопирован в буфер обмена');
+        }, function (err) {
+          console.error('Произошла ошибка при копировании текста: ', err);
+        });
+      })
+    }
+    copyToClipboard()
+
+    let allBuyButtons = document.getElementById('Favorites')?.querySelectorAll('.card-button');
+
+    // document.querySelector('[data-auth-bought-books-list]').addEventListener('click', (e) => {
+    //   const clickedElement = e.target;
+    //   if (clickedElement.tagName === 'a' && clickedElement.hasAttribute('data-book-id')) {
+    //     deleteBook(+clickedElement.getAttribute('data-book-id'));
+    //     e.preventDefault();
+    //   }
+    // })
 
     if (userData.is_bought_library_card === true) {
 
@@ -281,19 +319,26 @@ function Account() {
 
     }
 
-    function addBook(bookData, id) {
-      // 1. add the book into the userData object
-      // 2. update local storage variable according to the userData object
-      // 3. update view stage
-      userData.boughtBooks[id] = bookData;
-      updateLocalStorage();
-      showUserData();
-    }
-
     // init library cart form
-    document.getElementById('form-buy-library-card')?.addEventListener('submit', () => {
+    const formByLibraryCard = document.getElementById('form-buy-library-card');
+    const byCardSubmitBtn = document.getElementById('buy-library-card-submit-btn')
+
+
+
+    byCardSubmitBtn.addEventListener('mouseover', (e) => {
+      e.preventDefault()
+      if (formByLibraryCard.checkValidity()) {
+        byCardSubmitBtn.classList.remove('by-card-btn')
+        byCardSubmitBtn.classList.add('card-button')
+      }
+    })
+
+
+    formByLibraryCard.addEventListener('submit', (e) => {
+      e.preventDefault()
       userData.is_bought_library_card = true;
       updateLocalStorage();
+      location.reload();
     })
 
 
@@ -317,6 +362,18 @@ function Account() {
 
 
   }
+
+  function addBook(bookData, id) {
+    // 1. add the book into the userData object
+    // 2. update local storage variable according to the userData object
+    // 3. update view stage
+    userData.boughtBooks[id] = bookData;
+    updateLocalStorage();
+    showUserData();
+  }
+
+
+
   init();
 }
 
@@ -334,18 +391,34 @@ categoryFilter.addEventListener('change', () => {
 });
 
 
+
+
 //  FORM REGISTER
+let visits = +localStorage.getItem('visits');
 const formRegistration = document.getElementById('form-registration')
 const formRegistrationFields = formRegistration.elements
 
-formRegistration.addEventListener('submit', () => {
+formRegistration.addEventListener('submit', (e) => {
+  e.preventDefault();
   if (formRegistration.checkValidity()) {
     for (let i = 0; i < formRegistrationFields.length; i++) {
       localStorage.setItem(formRegistrationFields[i].name, formRegistrationFields[i].value)
     }
     localStorage.setItem('is_auth', true);
+    localStorage.setItem('visits', ++visits)
+    localStorage.setItem('card_number', generateCardNumber())
+
+
   }
 })
+
+function generateCardNumber() {
+  const min = 0x100000000;
+  const max = 0xfffffffff;
+  const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+
+  return randomNumber.toString(16).toLocaleUpperCase();
+}
 
 // FORM LOGIN
 const formLogin = document.getElementById('form-login')
@@ -355,9 +428,12 @@ formLogin.addEventListener('submit', (e) => {
   e.preventDefault();
 
   if (formLogin.checkValidity()) {
-    if (formLoginFields[0].value == localStorage.getItem('email') && formLoginFields[1].value == localStorage.getItem('password')) {
+    if ((formLoginFields[0].value == localStorage.getItem('email') || formLoginFields[0].value == localStorage.getItem('card_number')) && formLoginFields[1].value == localStorage.getItem('password')) {
       localStorage.setItem('is_auth', true);
+      localStorage.setItem('visits', ++visits)
       location.reload();
+    } else {
+      alert('Невернно введены логин или пароль')
     }
   }
 }
@@ -367,7 +443,7 @@ formLogin.addEventListener('submit', (e) => {
 
 // POPUPS
 function popUps() {
-  let popupAttributeName = 'data-popup',
+  const popupAttributeName = 'data-popup',
     popupButtonAttributeName = 'data-popup-button',
     popupCloseButtonAttributeName = 'data-popup-close',
     activePopupClass = 'opened';
@@ -388,6 +464,10 @@ function popUps() {
         popup = document.getElementById(popup_id);
 
       if (!popup) {
+        return;
+        // чтоб закрывалось при нажатии на иконку
+      } else if (popup.classList.contains(activePopupClass)) {
+        closeAllPopups();
         return;
       }
 
