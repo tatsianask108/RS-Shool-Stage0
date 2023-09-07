@@ -124,18 +124,22 @@
                 <div class="buy-card-box__content-left">
                     <form action="#" class="modal__form" id="form-buy-library-card">
                         <p class="modal__form__p">Bank card number</p>
-                        <input type="number" class="modal__form__input" required>
+                        <input type="text" class="modal__form__input" title='введите номер карты - 16 цифр'
+                            pattern="[0-9]{4}(\s?[0-9]{4}){3}" required>
                         <p class="modal__form__p">Expiration code</p>
-                        <input type="number" class="modal__form__input small" required>
-                        <input type="number" class="modal__form__input small" required>
+                        <input type="text" class="modal__form__input small" title='введите 2 цифры' pattern="[0-9]{2}"
+                            required>
+                        <input type="text" class="modal__form__input small" title='введите 2 цифры' pattern="[0-9]{2}"
+                            required>
                         <p class="modal__form__p">CVC</p>
-                        <input type="number" class="modal__form__input small last" required>
+                        <input type="text" class="modal__form__input small last" title='введите 3 цифры'
+                            pattern="[0-9]{3}" required>
                         <p class="modal__form__p">Cardholder name</p>
-                        <input type="text" class="modal__form__input" minlength='1' required>
+                        <input type="text" class="modal__form__input" required>
                         <p class="modal__form__p">Postal code</p>
-                        <input type="text" class="modal__form__input" minlength='1' required>
+                        <input type="text" class="modal__form__input" required>
                         <p class="modal__form__p">City / Town</p>
-                        <input type="text" class="modal__form__input" minlength='1' required>
+                        <input type="text" class="modal__form__input" required>
                         <button class="by-card-btn" id="buy-library-card-submit-btn">Buy</button>
                         <span class="book-price">$ 25.00</span>
                     </form>
@@ -706,7 +710,7 @@
                                     <div data-auth-readers-input-name>
                                         <input class="form-input" type="text" placeholder="Reader's name" value="">
                                     </div>
-                                    <div data-auth-readers-card-number-r><input class="form-input" type="text"
+                                    <div data-auth-readers-input-card-number><input class="form-input" type="text"
                                             placeholder="Card number" value=""></div>
                                 </div>
                                 <div class="card-profile-block-container" data-auth-readers-profile-block>

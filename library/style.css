@@ -1402,6 +1402,7 @@ footer {
 
 [data-auth-bought-books-list] {
     overflow-y: auto;
+    height: 120px;
 }
 
 .profile__box__numberline {

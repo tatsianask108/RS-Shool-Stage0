@@ -140,7 +140,8 @@ function Account() {
   let userDomDataMap = {
     '$readers-card-number': `userData.card_number`,
     '$user-full-name': `userData.full_name`,
-    '$user-short-name': `'<div title="' + userData.full_name + '">' + (userData.first_name.charAt() + userData.last_name.charAt()).toUpperCase() + '</div>'`,
+    // '$user-short-name': `'<div title="' + userData.full_name + '">' + (userData.first_name.charAt() + userData.last_name.charAt()).toUpperCase() + '</div>'`,
+    '$user-short-name': 'getUserShortName()',
     'menu': `
         <button data-popup-button="profile-popup">
             <p class="login-dropdown">My profile</p>
@@ -158,7 +159,7 @@ function Account() {
       `,
     '$bought-books-list': 'getBoughtBooksList()',
     '$readers-input-name': 'getReadersInputName()',
-    '$readers-card-number-r': 'getReadersInputCardNumber()',
+    '$readers-input-card-number': 'getReadersInputCardNumber()',
     '$bought-books-count': `Object.keys(userData.boughtBooks).length`,
     '$visits': `userData.visits`,
     '$readers-profile-block': `getUserProfileBlock()`,
@@ -176,7 +177,31 @@ function Account() {
         button.setAttribute('data-popup-button', 'login-popup')
       });
     }
+
+
+    function showInfoFor10Sec() {
+      if (!isAuth()) {
+        let form = document.getElementById('form-libr-card');
+        form.addEventListener('submit', (e) => {
+          e.preventDefault()
+          if (form.elements[0].value === localStorage.getItem('full_name') && form.elements[1].value === localStorage.getItem('card_number')) {
+            const block = document.querySelector('[data-profile-block]');
+            const container = document.querySelector('.card-profile-block-container');
+            block.firstElementChild.lastElementChild.innerHTML = userData.visits
+            block.lastElementChild.lastElementChild.innerHTML = Object.keys(userData.boughtBooks).length
+
+            container.innerHTML = block.outerHTML;
+            setTimeout(function () {
+              location.reload();
+            }, 10000);
+          }
+        })
+      }
+
+    }
+    showInfoFor10Sec()
   }
+
 
   function isRegistered() {
     return localStorage.getItem('email') !== null;
@@ -198,8 +223,6 @@ function Account() {
     userData.visits = +localStorage.getItem('visits');
     userData.card_number = localStorage.getItem('card_number');
 
-
-
     try {
       let boughtBooksLocalStorageObject = JSON.parse(localStorage.getItem('boughtBooks'));
 
@@ -219,39 +242,8 @@ function Account() {
     }
   }
 
+
   function showUserData() {
-
-
-    function getReadersInputName() {
-      return isAuth() ?
-        `<input class="form-input" type="text" placeholder="Reader's name" value="` + userData.full_name + `">` :
-        '';
-    }
-
-    function getReadersInputCardNumber() {
-      return isAuth() ?
-        `<input class="form-input" type="text" placeholder="Reader's name" value="` + userData.card_number + `">` :
-        '';
-    }
-
-    function getBoughtBooksList() {
-      let resultHtmlList = '';
-
-      for (let [key, value] of Object.entries(userData.boughtBooks)) {
-
-        resultHtmlList += '<li>' + value.name + ', ' + value.author.slice(2) + '</li>'
-        // <a data-book-id="' + key + '" href="#"></a>
-      }
-
-
-      return resultHtmlList;
-    }
-
-    function getUserProfileBlock() {
-      const block = document.querySelector('[data-profile-block]');
-      return block ? block.outerHTML : '';
-    }
-
     // works with DataMap
     for (let [key, value] of Object.entries(userDomDataMap)) {
       if (key.includes('$')) {
@@ -262,15 +254,46 @@ function Account() {
       document.querySelectorAll('[data-auth-' + key + ']')?.forEach(item => {
         item.innerHTML = value;
       })
-      // document.getElementById('form-libr-card').querySelector('input').value = `${userData.first_name} ${userData.last_name}`;
-      // console.log(document.querySelector('.icon-instead')).title = `${(userData.first_name.charAt() + userData.last_name.charAt()).toUpperCase()}`
     }
+
+    function getUserShortName() {
+      return isAuth() ?
+        `<div title="${userData.full_name}">${userData.first_name.charAt().toUpperCase()}${userData.last_name.charAt().toUpperCase()}</div>` :
+        '';
+    }
+
+    function getReadersInputName() {
+      return isAuth() ?
+        `<input class="form-input" type="text" placeholder="Reader's name" value="${userData.full_name}">` :
+        '';
+    }
+
+    function getReadersInputCardNumber() {
+      return isAuth() ?
+        `<input class="form-input" type="text" placeholder="Reader's name" value="${userData.card_number}">` :
+        '';
+    }
+
+    function getUserProfileBlock() {
+      const block = document.querySelector('[data-profile-block]');
+      return block ? block.outerHTML : '';
+    }
+
+    function getBoughtBooksList() {
+      let resultHtmlList = '';
+
+      for (let [key, value] of Object.entries(userData.boughtBooks)) {
+        // resultHtmlList += '<li>' + value.name + ', ' + value.author.slice(2) + '</li>'
+        resultHtmlList += `<li> ${value.name}, ${value.author.slice(2)}</li>`
+      }
+      return resultHtmlList;
+    }
+
 
     // works with books 
     let allBuyButtons = document.getElementById('Favorites')?.querySelectorAll('.card-button');
     for (let [key, value] of Object.entries(userData.boughtBooks)) {
-      let button = allBuyButtons.item(key);
-
+      let button = allBuyButtons[key];
       button.innerHTML = 'Own';
       button.classList.add('disabled');
     }
@@ -290,24 +313,17 @@ function Account() {
     }
     copyToClipboard()
 
+
     let allBuyButtons = document.getElementById('Favorites')?.querySelectorAll('.card-button');
-
-    // document.querySelector('[data-auth-bought-books-list]').addEventListener('click', (e) => {
-    //   const clickedElement = e.target;
-    //   if (clickedElement.tagName === 'a' && clickedElement.hasAttribute('data-book-id')) {
-    //     deleteBook(+clickedElement.getAttribute('data-book-id'));
-    //     e.preventDefault();
-    //   }
-    // })
-
     if (userData.is_bought_library_card === true) {
-
+      console.log(allBuyButtons)
       allBuyButtons.forEach((button, index) => {
         let bookContainer = button.parentElement,
           bookData = {
             name: bookContainer.querySelector('[data-book-name]')?.innerHTML,
             author: bookContainer.querySelector('[data-book-author]')?.innerHTML
           };
+        console.log(bookData)
         button.addEventListener('click', addBook.bind(this, bookData, index))
       })
 
@@ -323,16 +339,12 @@ function Account() {
     const formByLibraryCard = document.getElementById('form-buy-library-card');
     const byCardSubmitBtn = document.getElementById('buy-library-card-submit-btn')
 
-
-
-    byCardSubmitBtn.addEventListener('mouseover', (e) => {
-      e.preventDefault()
+    byCardSubmitBtn.addEventListener('mouseover', () => {
       if (formByLibraryCard.checkValidity()) {
         byCardSubmitBtn.classList.remove('by-card-btn')
         byCardSubmitBtn.classList.add('card-button')
       }
     })
-
 
     formByLibraryCard.addEventListener('submit', (e) => {
       e.preventDefault()
@@ -340,57 +352,21 @@ function Account() {
       updateLocalStorage();
       location.reload();
     })
-
-
-    // document.getElementById('change-name').addEventListener('submit', (e) => {
-    //   e.preventDefault();
-    //   if (e.target.first_name && e.target.first_name?.value === '') {
-    //     return
-    //   }
-
-    //   userData.first_name = e.target.first_name.value;
-    //   showUserData();
-
-    // })
-
-    /// name changer
-    /// 1. add event listener
-    /// 2. get form data 
-    /// 3. update userData object
-    /// 4. Sync data with storage
-    /// 5. Update user data on the page
-
-
   }
 
-  function addBook(bookData, id) {
+  function addBook(bookInfo, id) {
     // 1. add the book into the userData object
-    // 2. update local storage variable according to the userData object
-    // 3. update view stage
-    userData.boughtBooks[id] = bookData;
+    // 2. update local storage according to the userData object
+    // 3. update view state
+    userData.boughtBooks[id] = bookInfo;
     updateLocalStorage();
     showUserData();
   }
-
-
 
   init();
 }
 
 Account();
-
-
-
-// FAVORITES
-/*стили в style.css находятся после строки - "СКРЫТИЕ И ПОЯВЛЕНИЕ КНИГ ПО СЕЗОНАМ" */
-const booksContainer = document.getElementById('books-container'),
-  categoryFilter = document.getElementById('books-category');
-
-categoryFilter.addEventListener('change', () => {
-  booksContainer.setAttribute('data-current', categoryFilter.season.value);
-});
-
-
 
 
 //  FORM REGISTER
@@ -400,16 +376,15 @@ const formRegistrationFields = formRegistration.elements
 
 formRegistration.addEventListener('submit', (e) => {
   e.preventDefault();
-  if (formRegistration.checkValidity()) {
-    for (let i = 0; i < formRegistrationFields.length; i++) {
-      localStorage.setItem(formRegistrationFields[i].name, formRegistrationFields[i].value)
-    }
-    localStorage.setItem('is_auth', true);
-    localStorage.setItem('visits', ++visits)
-    localStorage.setItem('card_number', generateCardNumber())
 
-
+  for (let i = 0; i < formRegistrationFields.length; i++) {
+    localStorage.setItem(formRegistrationFields[i].name, formRegistrationFields[i].value)
   }
+  localStorage.setItem('is_auth', true);
+  localStorage.setItem('visits', ++visits)
+  localStorage.setItem('card_number', generateCardNumber())
+  location.reload();
+
 })
 
 function generateCardNumber() {
@@ -433,11 +408,22 @@ formLogin.addEventListener('submit', (e) => {
       localStorage.setItem('visits', ++visits)
       location.reload();
     } else {
-      alert('Невернно введены логин или пароль')
+      alert('Невернно введен логин или пароль')
     }
   }
 }
 )
+
+
+// FAVORITES
+/*стили в style.css находятся после строки - "СКРЫТИЕ И ПОЯВЛЕНИЕ КНИГ ПО СЕЗОНАМ" */
+const booksContainer = document.getElementById('books-container'),
+  categoryFilter = document.getElementById('books-category');
+
+categoryFilter.addEventListener('change', () => {
+  booksContainer.setAttribute('data-current', categoryFilter.season.value);
+});
+
 
 
 
@@ -500,3 +486,8 @@ function popUps() {
 
 }
 popUps();
+
+
+    //   function showProfileInfoFor10Sec() {}
+    // let timeoutId = window.setTimeout(showProfileInfoFor10Sec, 1000);
+    // clearTimeout(timeoutId * 10)
