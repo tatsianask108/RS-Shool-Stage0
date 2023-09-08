@@ -184,7 +184,8 @@ function Account() {
         let form = document.getElementById('form-libr-card');
         form.addEventListener('submit', (e) => {
           e.preventDefault()
-          if (form.elements[0].value === localStorage.getItem('full_name') && form.elements[1].value === localStorage.getItem('card_number')) {
+          if ((form.elements[0].value === localStorage.getItem('full_name') && form.elements[1].value === localStorage.getItem('card_number'))
+            || (form.elements[0].value === localStorage.getItem('first_name') && form.elements[1].value === localStorage.getItem('card_number'))) {
             const block = document.querySelector('[data-profile-block]');
             const container = document.querySelector('.card-profile-block-container');
             block.firstElementChild.lastElementChild.innerHTML = userData.visits
