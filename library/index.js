@@ -1,4 +1,4 @@
-// console.log('1. Вёрстка соответствует макету. Ширина экрана 768px +26\n2. Ни на одном из разрешений до 640px включительно не появляется горизонтальная полоса прокрутки. Весь контент страницы при этом сохраняется: не обрезается и не удаляется +12\n3. На ширине экрана 768рх реализовано адаптивное меню +12')
+console.log('Этап1. +50\nЭтап2. +49\nЭтап3. +29\nЭтап4. +76')
 
 // BURGER
 function burger() {
@@ -129,11 +129,12 @@ setTimeout(sliderFunction, 500);
 function Account() {
 
   let userData = {
-    first_name: null, last_name: null, email: null, full_name: null,
+    first_name: '', last_name: '', email: '', full_name: '',
     boughtBooks: {},
     is_bought_library_card: false, is_auth: false,
-    visits: 0, card_number: null
-  }
+    visits: 0, card_number: ''
+  },
+    localstorage_prefix = 'tatsianask_108_';
   /**
    * data-auth-{object_key}: html
    */
@@ -146,7 +147,7 @@ function Account() {
         <button data-popup-button="profile-popup">
             <p class="login-dropdown">My profile</p>
         </button>
-        <button onclick="localStorage.setItem('is_auth', false); location.reload()">
+        <button onclick="localStorage.setItem('tatsianask_108_is_auth', false); location.reload()">
             <p class="login-dropdown">Log Out</p>
         </button>
       `,
@@ -166,13 +167,13 @@ function Account() {
   };
 
   function init() {
-    loadUserData();
+    loadUserDataFromLocalStorage();
 
     if (isAuth()) {
       showUserData();
       initActions();
-
     } else if (isRegistered()) {
+      showInfoFor10Sec();
       document.getElementById('Favorites')?.querySelectorAll('.card-button')?.forEach(button => {
         button.setAttribute('data-popup-button', 'login-popup')
       });
@@ -180,57 +181,33 @@ function Account() {
 
 
     function showInfoFor10Sec() {
-      if (!isAuth()) {
-        let form = document.getElementById('form-libr-card');
-        form.addEventListener('submit', (e) => {
-          e.preventDefault()
-          if ((form.elements[0].value === localStorage.getItem('full_name') && form.elements[1].value === localStorage.getItem('card_number'))
-            || (form.elements[0].value === localStorage.getItem('first_name') && form.elements[1].value === localStorage.getItem('card_number'))) {
-            const block = document.querySelector('[data-profile-block]');
-            const container = document.querySelector('.card-profile-block-container');
-            block.firstElementChild.lastElementChild.innerHTML = userData.visits
-            block.lastElementChild.lastElementChild.innerHTML = Object.keys(userData.boughtBooks).length
+      let form = document.getElementById('form-libr-card');
+      form.addEventListener('submit', (e) => {
+        e.preventDefault()
+        if ((form.elements[0].value === localStorage.getItem('tatsianask_108_full_name') && form.elements[1].value === localStorage.getItem('tatsianask_108_card_number'))
+          || (form.elements[0].value === localStorage.getItem('tatsianask_108_first_name') && form.elements[1].value === localStorage.getItem('tatsianask_108_card_number'))) {
+          const block = document.querySelector('[data-profile-block]');
+          const container = document.querySelector('.card-profile-block-container');
+          block.firstElementChild.lastElementChild.innerHTML = userData.visits
+          block.lastElementChild.lastElementChild.innerHTML = Object.keys(userData.boughtBooks).length
 
-            container.innerHTML = block.outerHTML;
-            setTimeout(function () {
-              location.reload();
-            }, 10000);
-          }
-        })
-      }
-
+          container.innerHTML = block.outerHTML;
+          setTimeout(function () {
+            location.reload();
+          }, 10000);
+        }
+      })
     }
-    showInfoFor10Sec()
+
   }
 
 
   function isRegistered() {
-    return localStorage.getItem('email') !== null;
+    return userData.email;
   }
 
   function isAuth() {
     return userData.is_auth === true;
-  }
-
-  // load user data from local storage into the userData object
-  function loadUserData() {
-
-    userData.first_name = localStorage.getItem('first_name');
-    userData.last_name = localStorage.getItem('last_name');
-    userData.email = localStorage.getItem('email');
-    userData.full_name = localStorage.getItem('first_name') + ' ' + localStorage.getItem('last_name');
-    userData.is_bought_library_card = JSON.parse(localStorage.getItem('is_bought_library_card'));
-    userData.is_auth = JSON.parse(localStorage.getItem('is_auth'));
-    userData.visits = +localStorage.getItem('visits');
-    userData.card_number = localStorage.getItem('card_number');
-
-    try {
-      let boughtBooksLocalStorageObject = JSON.parse(localStorage.getItem('boughtBooks'));
-
-      if (boughtBooksLocalStorageObject !== null && typeof boughtBooksLocalStorageObject === 'object') {
-        userData.boughtBooks = boughtBooksLocalStorageObject;
-      }
-    } catch { }
   }
 
   // write user data from userData object into the local storage
@@ -239,7 +216,30 @@ function Account() {
       if (typeof value === 'object') {
         value = JSON.stringify(value);
       }
-      localStorage.setItem(key, value);
+      localStorage.setItem(localstorage_prefix + key, value);
+    }
+  }
+
+  // load user data from the local storage
+  function loadUserDataFromLocalStorage() {
+    for (let [key, value] of Object.entries(userData)) {
+      let local_storage_value = localStorage.getItem(localstorage_prefix + key);
+
+      if (!local_storage_value) {
+        continue;
+      }
+
+      if (['object', 'boolean'].includes(typeof value)) {
+        try {
+          local_storage_value = JSON.parse(local_storage_value);
+        } catch { }
+      }
+
+      userData[key] = local_storage_value;
+    }
+
+    if (userData.first_name && userData.last_name) {
+      userData.full_name = userData.first_name + ' ' + userData.last_name;
     }
   }
 
@@ -317,14 +317,12 @@ function Account() {
 
     let allBuyButtons = document.getElementById('Favorites')?.querySelectorAll('.card-button');
     if (userData.is_bought_library_card === true) {
-      console.log(allBuyButtons)
       allBuyButtons.forEach((button, index) => {
         let bookContainer = button.parentElement,
           bookData = {
             name: bookContainer.querySelector('[data-book-name]')?.innerHTML,
             author: bookContainer.querySelector('[data-book-author]')?.innerHTML
           };
-        console.log(bookData)
         button.addEventListener('click', addBook.bind(this, bookData, index))
       })
 
@@ -370,8 +368,9 @@ function Account() {
 Account();
 
 
+
 //  FORM REGISTER
-let visits = +localStorage.getItem('visits');
+let visits = +localStorage.getItem('tatsianask_108_visits');
 const formRegistration = document.getElementById('form-registration')
 const formRegistrationFields = formRegistration.elements
 
@@ -381,9 +380,9 @@ formRegistration.addEventListener('submit', (e) => {
   for (let i = 0; i < formRegistrationFields.length; i++) {
     localStorage.setItem(formRegistrationFields[i].name, formRegistrationFields[i].value)
   }
-  localStorage.setItem('is_auth', true);
-  localStorage.setItem('visits', ++visits)
-  localStorage.setItem('card_number', generateCardNumber())
+  localStorage.setItem('tatsianask_108_is_auth', true);
+  localStorage.setItem('tatsianask_108_visits', ++visits)
+  localStorage.setItem('tatsianask_108_card_number', generateCardNumber())
   location.reload();
 
 })
@@ -404,9 +403,9 @@ formLogin.addEventListener('submit', (e) => {
   e.preventDefault();
 
   if (formLogin.checkValidity()) {
-    if ((formLoginFields[0].value == localStorage.getItem('email') || formLoginFields[0].value == localStorage.getItem('card_number')) && formLoginFields[1].value == localStorage.getItem('password')) {
-      localStorage.setItem('is_auth', true);
-      localStorage.setItem('visits', ++visits)
+    if ((formLoginFields[0].value == localStorage.getItem('tatsianask_108_email') || formLoginFields[0].value == localStorage.getItem('tatsianask_108_card_number')) && formLoginFields[1].value == localStorage.getItem('tatsianask_108_password')) {
+      localStorage.setItem('tatsianask_108_is_auth', true);
+      localStorage.setItem('tatsianask_108_visits', ++visits)
       location.reload();
     } else {
       alert('Невернно введен логин или пароль')
