@@ -40,9 +40,9 @@ button {
     font-family: inherit;
 }
 
-a {
-    /* text-decoration: none; */
-}
+/* a {
+    text-decoration: none;
+} */
 
 /* .burger {
     margin-left: 40px;
@@ -55,9 +55,6 @@ a {
 .header-inner-wrapper {
     display: flex;
     align-items: center;
-
-
-
 }
 
 h1 {
@@ -342,11 +339,10 @@ h1 {
 }
 
 
-.img {
-    /* width: calc((100% - 50px) / 3); */
-    /* width: 100%; */
-
-}
+/* .img {
+    width: calc((100% - 50px) / 3); 
+    width: 100%;
+} */
 
 
 /* .item1 {
@@ -695,9 +691,6 @@ input[type='radio'] {
 
 }
 
-.card-button-disabled {}
-
-;
 
 .section {
     position: relative;
@@ -1342,10 +1335,9 @@ footer {
     margin: 0;
     font-size: 17px;
     text-align: center;
+    word-wrap: break-word;
 
 }
-
-.nameSurname p {}
 
 .right {
     display: flex;
