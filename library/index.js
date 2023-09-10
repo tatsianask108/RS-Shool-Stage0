@@ -203,7 +203,7 @@ function Account() {
 
 
   function isRegistered() {
-    return userData.email;
+    return !!userData.email;
   }
 
   function isAuth() {
