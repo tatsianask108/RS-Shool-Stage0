@@ -177,6 +177,10 @@ function Account() {
       document.getElementById('Favorites')?.querySelectorAll('.card-button')?.forEach(button => {
         button.setAttribute('data-popup-button', 'login-popup')
       });
+    } else {
+      document.getElementById('form-libr-card').addEventListener('submit', (e) => {
+        e.preventDefault()
+      })
     }
 
 
@@ -184,7 +188,7 @@ function Account() {
       let form = document.getElementById('form-libr-card');
       form.addEventListener('submit', (e) => {
         e.preventDefault()
-        if ((form.elements[0].value === localStorage.getItem('tatsianask_108_full_name') && form.elements[1].value === localStorage.getItem('tatsianask_108_card_number'))
+        if ((form.elements[0].value === localStorage.getItem('tatsianask_108_first_name') + ' ' + localStorage.getItem('tatsianask_108_last_name') && form.elements[1].value === localStorage.getItem('tatsianask_108_card_number'))
           || (form.elements[0].value === localStorage.getItem('tatsianask_108_first_name') && form.elements[1].value === localStorage.getItem('tatsianask_108_card_number'))) {
           const block = document.querySelector('[data-profile-block]');
           const container = document.querySelector('.card-profile-block-container');
@@ -370,12 +374,14 @@ Account();
 
 
 //  FORM REGISTER
-let visits = +localStorage.getItem('tatsianask_108_visits');
+
 const formRegistration = document.getElementById('form-registration')
 const formRegistrationFields = formRegistration.elements
 
 formRegistration.addEventListener('submit', (e) => {
   e.preventDefault();
+  localStorage.clear()
+  let visits = +localStorage.getItem('tatsianask_108_visits');
 
   for (let i = 0; i < formRegistrationFields.length; i++) {
     localStorage.setItem(formRegistrationFields[i].name, formRegistrationFields[i].value)
