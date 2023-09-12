@@ -374,12 +374,14 @@ Account();
 
 
 //  FORM REGISTER
-let visits = +localStorage.getItem('tatsianask_108_visits');
+
 const formRegistration = document.getElementById('form-registration')
 const formRegistrationFields = formRegistration.elements
 
 formRegistration.addEventListener('submit', (e) => {
   e.preventDefault();
+  localStorage.clear()
+  let visits = +localStorage.getItem('tatsianask_108_visits');
 
   for (let i = 0; i < formRegistrationFields.length; i++) {
     localStorage.setItem(formRegistrationFields[i].name, formRegistrationFields[i].value)
