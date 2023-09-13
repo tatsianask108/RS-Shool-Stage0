@@ -407,6 +407,7 @@ const formLoginFields = formLogin.elements
 
 formLogin.addEventListener('submit', (e) => {
   e.preventDefault();
+  let visits = +localStorage.getItem('tatsianask_108_visits');
 
   if (formLogin.checkValidity()) {
     if ((formLoginFields[0].value == localStorage.getItem('tatsianask_108_email') || formLoginFields[0].value == localStorage.getItem('tatsianask_108_card_number')) && formLoginFields[1].value == localStorage.getItem('tatsianask_108_password')) {
