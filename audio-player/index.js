@@ -50,7 +50,6 @@ function loadSong(song) {
     currentTimeSong.innerHTML = '00:00'
     setTimeout(() => {
         songDuration.innerHTML = formatTime(audio.duration)
-
     }, 300)
 
 }
@@ -125,7 +124,6 @@ prevButton.addEventListener('click', () => {
 function updateProgress() {
     let currentTime = audio.currentTime
     currentTimeSong.innerHTML = formatTime(currentTime)
-
     const duration = audio.duration
     const progressPercents = (currentTime / duration) * 100
     progress.style.width = `${progressPercents}%`
