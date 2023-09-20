@@ -50,7 +50,7 @@ function loadSong(song) {
     currentTimeSong.innerHTML = '00:00'
     setTimeout(() => {
         songDuration.innerHTML = formatTime(audio.duration)
-    }, 300)
+    }, 200)
 
 }
 

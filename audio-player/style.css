@@ -75,7 +75,7 @@ a:hover {
 
 .artist-name {
     text-transform: uppercase;
-    color: rgb(115, 19, 134);
+    color: rgb(82, 22, 94);
     font-size: 30px;
     margin-top: 5px;
     margin-bottom: 5px;
@@ -85,6 +85,11 @@ a:hover {
     display: flex;
     justify-content: space-between;
     margin-top: 5px;
+}
+
+.current-time,
+.song-duration {
+    font-size: 20px;
 }
 
 .progress__container {
@@ -99,7 +104,7 @@ a:hover {
 }
 
 .progress {
-    background: rgb(120, 120, 219);
+    background: rgb(148, 148, 218);
     border-radius: 5px;
     height: inherit;
 }
@@ -112,8 +117,14 @@ a:hover {
 }
 
 .btn {
-    height: 50px;
+    height: 70px;
     cursor: pointer;
+    border-radius: 50%;
+    transition: box-shadow .4s ease;
+}
+
+.btn:hover {
+    box-shadow: 0px 0px 20px 2px rgba(82, 69, 76, 0.815);
 }
 
 /* FOOTER */
@@ -123,7 +134,7 @@ footer {
     flex-direction: column;
     padding: 10px 20px;
     width: 100%;
-    box-shadow: 10px 10px 5px 15px rgba(236, 224, 224, 0.2);
+    box-shadow: 10px 10px 15px 15px rgba(236, 224, 224, 0.2);
 
 }
 
@@ -143,6 +154,7 @@ footer {
 .rs-logo {
     width: 30%;
     margin-left: 40%;
+    opacity: 0.8;
 }
 
 .frame2>div:last-child {
