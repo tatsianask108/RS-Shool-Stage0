@@ -1,3 +1,4 @@
+console.log('1.Вёрстка +10\n2.Кнопка Play/Pause +10\n3.При кликах по кнопкам "Вперёд" и "Назад" переключается проигрываемый аудиотрек. Аудиотреки пролистываются по кругу - после последнего идёт первый +10\n4.При смене аудиотрека меняется изображение - обложка аудиотрека +10\n5.Прогресс-бар отображает прогресс проигрывания текущего аудиотрека. При перемещении ползунка вручную меняется текущее время проигрывания аудиотрека +10\n6.Отображается продолжительность аудиотрека и его текущее время проигрывания +10')
 const audio = document.querySelector('.audio'),
     player = document.querySelector('.player'),
     playBtn = document.querySelector('.play'),
@@ -37,7 +38,7 @@ const songs = [
 ]
 
 // default song
-let songIndex = 0
+let playNum = 0
 
 
 //initialization
@@ -45,8 +46,8 @@ function loadSong(song) {
     artistName.innerHTML = song.artist
     songName.innerHTML = song.name
     audio.src = `${song.path}`
-    coverImg.src = `assets/img/cover${songIndex + 1}.jpg`
-    background.src = `assets/img/cover${songIndex + 1}.jpg`
+    coverImg.src = `assets/img/cover${playNum + 1}.jpg`
+    background.src = `assets/img/cover${playNum + 1}.jpg`
     currentTimeSong.innerHTML = '00:00'
     setTimeout(() => {
         songDuration.innerHTML = formatTime(audio.duration)
@@ -54,7 +55,7 @@ function loadSong(song) {
 
 }
 
-loadSong(songs[songIndex])
+loadSong(songs[playNum])
 
 //formatting time to minutes and seconds
 function formatTime(time) {
@@ -70,14 +71,14 @@ function formatTime(time) {
 }
 
 //play song
-function playSong() {
+function playAudio() {
     player.classList.add('play')
     imgSrc.src = `assets/svg/pause.png`
     audio.play()
 }
 
 //pause song
-function pauseSong() {
+function pauseAudio() {
     player.classList.remove('play')
     imgSrc.src = `assets/svg/play.png`
     audio.pause()
@@ -86,38 +87,38 @@ function pauseSong() {
 playBtn.addEventListener('click', () => {
     let isPlaying = player.classList.contains('play')
     if (isPlaying) {
-        pauseSong()
+        pauseAudio()
     } else {
-        playSong()
+        playAudio()
     }
 })
 
 //next song 
-function nextSong() {
-    songIndex++
-    if (songIndex > songs.length - 1) {
-        songIndex = 0
+function playNext() {
+    playNum++
+    if (playNum > songs.length - 1) {
+        playNum = 0
     }
-    loadSong(songs[songIndex])
-    playSong()
+    loadSong(songs[playNum])
+    playAudio()
 }
 
 nextButton.addEventListener('click', () => {
-    nextSong()
+    playNext()
 })
 
 //previous song 
-function prevSong() {
-    songIndex--
-    if (songIndex < 0) {
-        songIndex = songs.length - 1
+function playPrev() {
+    playNum--
+    if (playNum < 0) {
+        playNum = songs.length - 1
     }
-    loadSong(songs[songIndex])
-    playSong()
+    loadSong(songs[playNum])
+    playAudio()
 }
 
 prevButton.addEventListener('click', () => {
-    prevSong()
+    playPrev()
 })
 
 //progress bar
@@ -142,4 +143,4 @@ function changeProgress(e) {
 progressContainer.addEventListener('click', changeProgress)
 
 //autoplay
-audio.addEventListener('ended', nextSong)
+audio.addEventListener('ended', playNext)
