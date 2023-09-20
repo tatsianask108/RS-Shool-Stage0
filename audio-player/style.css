@@ -69,11 +69,13 @@ img {
     color: rgb(115, 19, 134);
     font-size: 30px;
     margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .time {
     display: flex;
     justify-content: space-between;
+    margin-top: 5px;
 }
 
 .progress__container {

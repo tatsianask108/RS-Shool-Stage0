@@ -47,9 +47,28 @@ function loadSong(song) {
     audio.src = `${song.path}`
     coverImg.src = `assets/img/cover${songIndex + 1}.jpg`
     background.src = `assets/img/cover${songIndex + 1}.jpg`
+    currentTimeSong.innerHTML = '00:00'
+    setTimeout(() => {
+        songDuration.innerHTML = formatTime(audio.duration)
+
+    }, 300)
+
 }
 
 loadSong(songs[songIndex])
+
+//formatting time to minutes and seconds
+function formatTime(time) {
+    let min = Math.floor(time / 60)
+    if (min < 10) {
+        min = `0${min}`
+    }
+    let sec = Math.floor(time % 60)
+    if (sec < 10) {
+        sec = `0${sec}`
+    }
+    return `${min}:${sec}`
+}
 
 //play song
 function playSong() {
@@ -104,9 +123,9 @@ prevButton.addEventListener('click', () => {
 
 //progress bar
 function updateProgress() {
-    currentTimeSong.innerHTML = Math.round(audio.currentTime)
-    songDuration.innerHTML = audio.duration
     let currentTime = audio.currentTime
+    currentTimeSong.innerHTML = formatTime(currentTime)
+
     const duration = audio.duration
     const progressPercents = (currentTime / duration) * 100
     progress.style.width = `${progressPercents}%`
