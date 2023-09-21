@@ -20,24 +20,31 @@ const audio = document.querySelector('.audio'),
 
 const songs = [
     {
+        artist: 'Oaasis',
+        name: 'Silent Wood',
+        path: 'assets/audio/Oaasis - Silent Wood.mp3',
+        cover: 'assets/img/cover1.jpg',
+        duration: 187.689796,
+    },
+    {
         artist: 'LO-FI LE-VI',
         name: 'You',
         path: 'assets/audio/LO-FI LE-VI - You.mp3',
-        cover: 'assets/img/cover1.jpg',
+        cover: 'assets/img/cover2.jpg',
         duration: 71.136,
     },
     {
         artist: 'Barradeen',
         name: 'The girl I haven\'t met',
         path: 'assets/audio/Barradeen - The girl I haven\'t met.mp3',
-        cover: 'assets/img/cover2.jpg',
+        cover: 'assets/img/cover3.jpg',
         duration: 91.742041,
     },
     {
         artist: 'Extenz',
         name: 'Life',
         path: 'assets/audio/Extenz - Life.mp3',
-        cover: 'assets/img/cover3.jpg',
+        cover: 'assets/img/cover4.jpg',
         duration: 198.922449,
     },
 
