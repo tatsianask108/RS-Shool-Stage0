@@ -48,13 +48,16 @@ function loadSong(song) {
     audio.src = `${song.path}`
     coverImg.src = `assets/img/cover${playNum + 1}.jpg`
     background.src = `assets/img/cover${playNum + 1}.jpg`
+
     currentTimeSong.innerHTML = '00:00'
-    setTimeout(() => {
+    audio.addEventListener("loadedmetadata", () => {
         songDuration.innerHTML = formatTime(audio.duration)
-    }, 200)
+    })
+    // setTimeout(() => {
+
+    // }, 500)
 
 }
-
 loadSong(songs[playNum])
 
 //formatting time to minutes and seconds
