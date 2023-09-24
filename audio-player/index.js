@@ -77,6 +77,7 @@ function loadSong(song) {
         songDuration.innerHTML = formatTime(audio.duration)
         progressBar.max = audio.duration
     })
+    clearInterval(songProgressInterval)
 
 }
 
