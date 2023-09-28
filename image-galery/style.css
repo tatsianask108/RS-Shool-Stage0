@@ -7,7 +7,7 @@
 body {
     font-family: 'Poppins', sans-serif;
     font-size: 20px;
-    color: rgba(0, 0, 0, 0.877);
+    color: rgba(0, 0, 0, 0.747);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -18,6 +18,11 @@ a {
     text-decoration: none;
 }
 
+.wrapper {
+    /* width: 100%; */
+    text-align: center;
+
+}
 
 .header-wrapper {
     padding: 20px;
@@ -30,6 +35,13 @@ a {
 header {
     border-bottom: 5px solid rgba(82, 197, 82, 0.603);
     padding: 0 10%;
+}
+
+.camera-icon {
+    background: url(camera.png);
+    width: 50px;
+    display: inline-block;
+    height: 50px;
 }
 
 .search-bar {
@@ -75,8 +87,8 @@ input:focus {
 
 .divUploadedImg {
     flex: 0 1 30%;
-    min-width: 190px;
-    min-height: 215px;
+    max-width: 400px;
+    max-height: 340px;
     margin: 10px;
 }
 
@@ -124,4 +136,18 @@ a:visited {
 
 .frame2>div:last-child {
     text-align: right;
+}
+
+@media (max-width: 768px) {
+    .header-wrapper {
+        flex-direction: column;
+    }
+
+    h1 {
+        margin-bottom: 7px;
+    }
+
+    .search-bar {
+        width: 70%;
+    }
 }
