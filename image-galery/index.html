@@ -5,12 +5,41 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Image gallery</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <script src="index.js"></script>
+
+    <header>
+        <div class="wrapper">
+            <div class="header-wrapper">
+                <h1>Unsplash API</h1>
+                <form action="" class="search-bar">
+                    <input id="input" type="text" autocomplete="off" placeholder="Search..." autofocus>
+                    <span><img id="cross" src="cross.png" alt=""></span>
+                </form>
+            </div>
+
+        </div>
+    </header>
+    <main>
+        <div class="wrapper">
+            <div id="img-container" class="img-container"></div>
+
+        </div>
+    </main>
+    <footer>
+        <div class="frame2">
+            <div>2023</div>
+            <div><a href="https://rs.school/js-stage0/" target="_blank"><img class="rs-logo" src="rs_school_js.svg"
+                        alt="rss"></a></div>
+            <div><a href=" https://github.com/tatsianask108" target="_blank">tatsianask108</a>
+            </div>
+        </div>
+    </footer>
+    <script src="app.js"></script>
 </body>
 
 </html>
