@@ -11,7 +11,13 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    height: 100vh;
 }
+
+a {
+    text-decoration: none;
+}
+
 
 .header-wrapper {
     padding: 20px;
@@ -58,10 +64,13 @@ input:focus {
 
 
 .img-container {
-    height: 100vh;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+}
+
+.textDiv {
+    font-size: 2rem;
 }
 
 .divUploadedImg {
@@ -77,19 +86,21 @@ input:focus {
     object-fit: cover;
 }
 
-/* img {
-    width: 100%;
-} */
+
 
 /* FOOTER */
 footer {
-    background: rgb(214, 194, 203);
+    background: rgba(82, 197, 82, 0.603);
     display: flex;
     flex-direction: column;
     padding: 10px 20px;
     width: 100%;
     box-shadow: 10px 10px 15px 15px rgba(236, 224, 224, 0.2);
 
+}
+
+a:visited {
+    color: rgba(0, 0, 0, 0.877)
 }
 
 .frame2 {
