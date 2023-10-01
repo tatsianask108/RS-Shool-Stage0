@@ -16,7 +16,9 @@ body {
 
 a {
     text-decoration: none;
+    color: rgba(0, 0, 0, 0.747);
 }
+
 
 .wrapper {
     /* width: 100%; */
@@ -33,8 +35,10 @@ a {
 
 
 header {
-    border-bottom: 5px solid rgba(82, 197, 82, 0.603);
+    /* border-bottom: 5px solid rgba(82, 197, 82, 0.603); */
     padding: 0 10%;
+    box-shadow: 0 4px 2px -2px rgba(82, 197, 82, 0.603);
+    margin-bottom: 1rem;
 }
 
 .camera-icon {
@@ -86,6 +90,7 @@ input:focus {
 }
 
 .divUploadedImg {
+
     flex: 0 1 30%;
     max-width: 400px;
     max-height: 340px;
@@ -93,6 +98,7 @@ input:focus {
 }
 
 .gotImg {
+    border-radius: 5px;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -111,9 +117,6 @@ footer {
 
 }
 
-a:visited {
-    color: rgba(0, 0, 0, 0.877)
-}
 
 .frame2 {
     display: flex;
