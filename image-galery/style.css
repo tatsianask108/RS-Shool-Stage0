@@ -1,0 +1,156 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.747);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+}
+
+a {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.747);
+}
+
+
+.wrapper {
+    /* width: 100%; */
+    text-align: center;
+
+}
+
+.header-wrapper {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+header {
+    /* border-bottom: 5px solid rgba(82, 197, 82, 0.603); */
+    padding: 0 10%;
+    box-shadow: 0 4px 2px -2px rgba(82, 197, 82, 0.603);
+    margin-bottom: 1rem;
+}
+
+.camera-icon {
+    background: url(camera.png);
+    width: 50px;
+    display: inline-block;
+    height: 50px;
+}
+
+.search-bar {
+    width: 30%;
+    position: relative;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 2rem;
+    border: 1px solid rgba(61, 63, 61, 0.603);
+    font-size: 1.2rem;
+    outline: none;
+    transition: all 0.5 ease-in-out;
+
+}
+
+input:focus {
+    box-shadow: 0 0 5px rgba(82, 197, 82, 0.603);
+    border: 1px solid rgba(82, 197, 82, 0.603);
+}
+
+.search-bar>span>img {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 25%;
+    right: 5%;
+    cursor: pointer;
+}
+
+
+.img-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.textDiv {
+    font-size: 2rem;
+}
+
+.divUploadedImg {
+
+    flex: 0 1 30%;
+    max-width: 400px;
+    max-height: 340px;
+    margin: 10px;
+}
+
+.gotImg {
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+
+/* FOOTER */
+footer {
+    background: rgba(82, 197, 82, 0.603);
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20px;
+    width: 100%;
+    box-shadow: 10px 10px 15px 15px rgba(236, 224, 224, 0.2);
+
+}
+
+
+.frame2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    text-align: center;
+
+}
+
+.frame2>div:first-child {
+    text-align: left;
+}
+
+.rs-logo {
+    width: 30%;
+    margin-left: 40%;
+    opacity: 0.8;
+}
+
+.frame2>div:last-child {
+    text-align: right;
+}
+
+@media (max-width: 768px) {
+    .header-wrapper {
+        flex-direction: column;
+    }
+
+    h1 {
+        margin-bottom: 7px;
+    }
+
+    .search-bar {
+        width: 70%;
+    }
+}
