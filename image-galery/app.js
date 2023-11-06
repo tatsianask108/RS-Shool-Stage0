@@ -1,64 +1,67 @@
 const accessKey = 'OMwDIAQF0FYjBA8pqbedHJKqu15CX64ALK8k51BG2Hk';
 
-const inputEl = document.getElementById('input')
-const imgContainer = document.getElementById('img-container');
-const imgContainerWrapper = document.querySelector('.img-container-wrapper')
-const text = document.querySelector('.text')
-const form = document.querySelector('.search-bar')
-const cross = document.getElementById('cross')
-let inputData = ''
+const form = document.getElementById('search-form'),
+    inputEl = form.querySelector('input[name=search]'),
+    cross = form.querySelector('[data-action=cross]');
 
+const imgContainer = document.getElementById('img-container'),
+    prompt = imgContainer.querySelector('[data-role=prompt]'),
+    resultContainer = imgContainer.querySelector('[data-role=result]');
 
-// ???
-// window.onload = getData('image')
 // любая асинхронная ф-ция возвращает промис
-async function getData(inputData) {
+async function getData(query) {
     try {
-        inputData = inputEl.value
         // console.log(inputData)
-        if (!inputData) {
-            inputData = 'image'
+        if (!query) {
+            query = 'image'
         }
-        const url = `https://api.unsplash.com/search/photos?query=${inputData}&per_page=12&client_id=${accessKey}`
+        const url = `https://api.unsplash.com/search/photos?query=${query}&per_page=12&client_id=${accessKey}`
         const response = await fetch(url);
-        const gotData = await response.json();
+        const data = await response.json();
         // console.log(gotData)
 
-        showData(gotData)
+        return data;
     } catch (error) {
         console.warn(error)
-        return error
+        return {}
     }
 
 }
-getData(inputData);
-// нужно ли вызывать?
 
-function showData(data) {
+function renderData(data) {
+    resultContainer.innerHTML = '';
+
     if (data.results.length === 0) {
         const emptyDiv = document.createElement('div')
         emptyDiv.classList.add('textDiv')
         emptyDiv.innerHTML = `No images found :(`
-        imgContainer.append(emptyDiv);
+        resultContainer.append(emptyDiv);
     } else {
-        imgContainerWrapper.prepend(text)
+        imgContainer.prepend(prompt)
         data.results.forEach((el) => {
             const divForImg = document.createElement('div')
             divForImg.classList.add('divUploadedImg')
             divForImg.innerHTML = `<a href="${el.urls.full}" target="_blank"><img src="${el.urls.regular}" title="${el.alt_description}" class="gotImg"></a>`
-            imgContainer.append(divForImg);
+            resultContainer.append(divForImg);
         })
     }
 }
 
 
+async function showDataFor(search_string) {
+    const data = await getData(search_string);
+    return renderData(data);
+}
+
+window.addEventListener('DOMContentLoaded', showDataFor.bind(this, 'image'));
+
 
 form.addEventListener('submit', (e) => {
     e.preventDefault()
-    text.remove()
-    imgContainer.innerHTML = ''
-    getData(inputData)
-    // и тут вызывать?
+    prompt.remove()
+    resultContainer.innerHTML = 'Loading ...'
+    showDataFor(inputEl.value)
+
 })
 
 cross.addEventListener('click', () => {

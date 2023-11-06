@@ -11,14 +11,13 @@
 </head>
 
 <body>
-    <!-- onload="getData('image')" -->
     <header>
         <div class="wrapper">
             <div class="header-wrapper">
                 <h1><span class="camera-icon"></span>Unsplash API</h1>
-                <form action="#" class="search-bar">
-                    <input id="input" type="text" autocomplete="off" placeholder="Search..." autofocus>
-                    <span><img id="cross" src="cross.png" alt=""></span>
+                <form action="#" class="search-bar" id="search-form">
+                    <input name="search" type="text" autocomplete="off" placeholder="Search..." autofocus>
+                    <span data-action="cross"><img src="cross.png" alt=""></span>
                 </form>
             </div>
 
@@ -26,9 +25,9 @@
     </header>
     <main>
         <div class="wrapper">
-            <div class="img-container-wrapper">
-                <div class="text">Click on photo to open it full size</div>
-                <div id="img-container" class="img-container"></div>
+            <div id="img-container" class="img-container-wrapper">
+                <div class="text" data-role="prompt">Click on photo to open it full size</div>
+                <div class="img-container" data-role="result"></div>
             </div>
 
 
